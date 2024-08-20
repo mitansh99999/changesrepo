@@ -8,9 +8,7 @@ class script(object):
 ★ Language: <a href=https://www.python.org>Python</a>
 ★ Library: <a href=https://pyrogram.org>Pyrogram</a>"""
 
-    MY_OWNER_TXT = """★ Name: RK Botz
-★ Username: @Rk_botowner
-★ Update Channel : @Rkbotz"""
+    MY_OWNER_TXT = """★ Name: 𝚃𝚑𝚎𝚙𝚛𝚘𝚏𝚏𝚏𝚎𝚜𝚘𝚛𝚛 𝚡 𝙼𝚘𝚟𝚒𝚎𝚜 𝚉𝚘𝚗𝚎"""
 
     STATUS_TXT = """<b>╭━━━━━━━━❰sᴛᴀᴛᴜs ʙᴀʀ❱══❍⊱❁۪۪
 ┣⪼𖨠 🗃️ ᴛᴏᴛᴀʟ ꜰɪʟᴇs: <code>{}</code>
@@ -57,7 +55,7 @@ I can't find the <b>{}</b> in my database! 🥲
 
 » sᴛᴇᴘ 1:- ғɪʀsᴛ ʏᴏᴜ ʜᴀᴠᴇ ᴛᴏ ᴀᴅᴅ ᴛʜɪs ʙᴏᴛ ɪɴ ʏᴏᴜʀ ɢʀᴏᴜᴘ ᴡɪᴛʜ ᴀᴅᴍɪɴ ᴘᴇʀᴍɪssɪᴏɴ.
 
-» sᴛᴇᴘ 2:- ᴍᴀᴋᴇ ᴀᴄᴄᴏᴜɴᴛ ᴏɴ <a href=https://onepagelink.in/ref/infinity07>onepagelink.in</a> [ ʏᴏᴜ ᴄᴀɴ ᴀʟsᴏ ᴜsᴇ ᴏᴛʜᴇʀ sʜᴏʀᴛɴᴇʀ ᴡᴇʙsɪᴛᴇ ]
+» sᴛᴇᴘ 2:- ᴍᴀᴋᴇ ᴀᴄᴄᴏᴜɴᴛ ᴏɴ <a href=https://droplink.co/ref/mitansh>droplink.co</a> [ ʏᴏᴜ ᴄᴀɴ ᴀʟsᴏ ᴜsᴇ ᴏᴛʜᴇʀ sʜᴏʀᴛɴᴇʀ ᴡᴇʙsɪᴛᴇ ]
 
 » sᴛᴇᴘ 3:- ᴄʟɪᴄᴋ ᴏɴ ᴛʜᴇ ʙᴇʟᴏᴡ ɢɪᴠᴇɴ ʙᴜᴛᴛᴏɴ ᴛᴏ ᴋɴᴏᴡ ʜᴏᴡ ᴛᴏ ᴄᴏɴɴᴇᴄᴛ ʏᴏᴜʀ sʜᴏʀᴛɴᴇʀ ᴡɪᴛʜ ᴛʜɪs ʙᴏᴛ.
 
@@ -73,7 +71,7 @@ I can't find the <b>{}</b> in my database! 🥲
 
 ➥ ᴇxᴀᴍᴘʟᴇ ↓↓↓
 
-<code>/set_shortlink onepagelink.in f646357aa129cfbd7eb59bcba428096ab54ca950</code>
+<code>/set_shortlink droplink.co e3db093b5ee80c49597b6a30160a541d8e33b1dc</code>
 
 ➥ ɪꜰ ʏᴏᴜ ᴡᴀɴᴛ ᴛᴏ ᴄʜᴇᴄᴋ ᴡʜɪᴄʜ sʜᴏʀᴛᴇɴᴇʀ ʏᴏᴜ ʜᴀᴠᴇ ᴄᴏɴɴᴇᴄᴛᴇᴅ ᴛᴏ ʏᴏᴜʀ ɢʀᴏᴜᴘ ᴛʜᴇɴ sᴇɴᴅ ᴛʜɪs ᴄᴏᴍᴍᴀɴᴅ ᴛᴏ ᴛʜᴇ ɢʀᴏᴜᴘ /get_shortlink
 
@@ -91,7 +89,7 @@ I can't find the <b>{}</b> in my database! 🥲
 🗣 Requested by: {message.from_user.mention}
 ©️ Powered by: <b>{message.chat.title}</b>"""
 
-    FILE_CAPTION = """<i>{file_name}</i>
+     FILE_CAPTION = """[@Theprofffesorr] [@Latest_Movies16_7]<i>{file_name}</i>
 
 🚫 ᴘʟᴇᴀsᴇ ᴄʟɪᴄᴋ ᴏɴ ᴛʜᴇ ᴄʟᴏsᴇ ʙᴜᴛᴛᴏɴ ɪꜰ ʏᴏᴜ ʜᴀᴠᴇ sᴇᴇɴ ᴛʜᴇ ᴍᴏᴠɪᴇ 🚫"""
 
@@ -138,8 +136,6 @@ I can't find the <b>{}</b> in my database! 🥲
 
     SOURCE_TXT = """<b>ʙᴏᴛ ɢɪᴛʜᴜʙ ʀᴇᴘᴏsɪᴛᴏʀʏ -
 
-- ᴛʜɪꜱ ʙᴏᴛ ɪꜱ ᴀɴ ᴏᴘᴇɴ ꜱᴏᴜʀᴄᴇ ᴘʀᴏᴊᴇᴄᴛ.
+- ꜱᴏᴜʀᴄᴇ - <a href=https://telegra.ph/file/b3fd4cf16c2834f7c84e0.mp4>ʜᴇʀᴇ</a>
 
-- ꜱᴏᴜʀᴄᴇ - <a href=https://github.com/Rishikesh-Sharma09/Auto-Filter-Bot>ʜᴇʀᴇ</a>
-
-- ᴅᴇᴠʟᴏᴘᴇʀ - @Rkbotz"""
+- ᴅᴇᴠʟᴏᴘᴇʀ - 𝚃𝚑𝚎𝚙𝚛𝚘𝚏𝚏𝚏𝚎𝚜𝚘𝚛𝚛 𝚡 𝙼𝚘𝚟𝚒𝚎𝚜 𝚉𝚘𝚗𝚎"""
