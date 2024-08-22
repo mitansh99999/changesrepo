@@ -14,7 +14,7 @@ routes = web.RouteTableDef()
 
 @routes.get("/", allow_head=True)
 async def root_route_handler(request):
-    return web.Response(text='<h1 align="center"><a href="https://t.me/HA_Bots"><b>HA Bots</b></a></h1>', content_type='text/html')
+    return web.Response(text='<h1 align="center"><a href="https://t.me/+3w9JlpDFFJ85MmI9"><b>𝚃𝚑𝚎𝚙𝚛𝚘𝚏𝚏𝚏𝚎𝚜𝚘𝚛𝚛 𝚡 𝙼𝚘𝚟𝚒𝚎𝚜 𝚉𝚘𝚗𝚎</b></a></h1>', content_type='text/html')
 
 
 @routes.get("/watch/{message_id}")
