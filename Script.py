@@ -8,7 +8,7 @@ class script(object):
 ★ Language: <a href=https://www.python.org>Python</a>
 ★ Library: <a href=https://pyrogram.org>Pyrogram</a>"""
 
-    MY_OWNER_TXT = """★ Name: 𝚃𝚑𝚎𝚙𝚛𝚘𝚏𝚏𝚏𝚎𝚜𝚘𝚛𝚛 𝚡 𝙼𝚘𝚟𝚒𝚎𝚜 𝚉𝚘𝚗𝚎"""
+    MY_OWNER_TXT = """★ Name: 𝙼𝚘𝚟𝚒𝚎𝚜 𝚉𝚘𝚗𝚎"""
 
     STATUS_TXT = """🗂 Total Files: <code>{}</code>
 👤 Total Users: <code>{}</code>
@@ -87,7 +87,7 @@ I can't find the <b>{}</b> in my database! 🥲
 🗣 Requested by: {message.from_user.mention}
 ©️ Powered by: <b>{message.chat.title}</b>"""
 
-    FILE_CAPTION = """[@Latest_Movies16_7]<i>{file_name}</i>
+    FILE_CAPTION = """[@smokerips]<i>{file_name}</i>
 
 🚫 ᴘʟᴇᴀsᴇ ᴄʟɪᴄᴋ ᴏɴ ᴛʜᴇ ᴄʟᴏsᴇ ʙᴜᴛᴛᴏɴ ɪꜰ ʏᴏᴜ ʜᴀᴠᴇ sᴇᴇɴ ᴛʜᴇ ᴍᴏᴠɪᴇ 🚫"""
 
