@@ -37,7 +37,7 @@ PORT = int(environ.get('PORT', '80')) #don't change anything
 PICS = (environ.get('PICS', 'https://telegra.ph/file/58fef5cb458d5b29b0186.jpg https://telegra.ph/file/f0aa4f433132769f8970c.jpg https://telegra.ph/file/f515fbc2084592eca60a5.jpg https://telegra.ph/file/20dbdcffaa89bd3d09a74.jpg https://telegra.ph/file/6045ba953af4def846238.jpg')).split()
 
 # Bot Admins
-ADMINS = environ.get('ADMINS', '1398885416 767386502') #apni tg id daalo
+ADMINS = environ.get('ADMINS', '767386502') #apni tg id daalo
 if len(ADMINS) == 0:
     print('Error - ADMINS is missing, exiting now')
     exit()
@@ -48,7 +48,7 @@ else:
 INDEX_CHANNELS = [int(index_channels) if index_channels.startswith("-") else index_channels for index_channels in environ.get('INDEX_CHANNELS', '-1001242070400 -1001727262090 -1001896431744').split()]
 if len(INDEX_CHANNELS) == 0:
     print('Info - INDEX_CHANNELS is empty')
-AUTH_CHANNEL = [int(auth_channels) for auth_channels in environ.get('AUTH_CHANNEL', '').split()]
+AUTH_CHANNEL = [int(auth_channels) for auth_channels in environ.get('AUTH_CHANNEL', '-1001225188740').split()]
 if len(AUTH_CHANNEL) == 0:
     print('Info - AUTH_CHANNEL is empty')
 LOG_CHANNEL = environ.get('LOG_CHANNEL', '-1001602859617') #bot log channel -1005293546253
@@ -77,7 +77,7 @@ COLLECTION_NAME = environ.get('COLLECTION_NAME', 'Files')
 
 # Links
 SUPPORT_LINK = environ.get('SUPPORT_LINK', 'https://t.me/MrLatestMoviesbot')
-UPDATES_LINK = environ.get('UPDATES_LINK', 'https://t.me/Theprofffesorr')
+UPDATES_LINK = environ.get('UPDATES_LINK', 'https://t.me/+sUcFfw_7XOM2NGI1')
 FILMS_LINK = environ.get('FILMS_LINK', 'https://t.me/+3w9JlpDFFJ85MmI9')
 TUTORIAL = environ.get("TUTORIAL", "https://t.me/HowToDownloadOurSite/9")
 VERIFY_TUTORIAL = environ.get("VERIFY_TUTORIAL", "https://t.me/HowToDownloadOurSite/9")
@@ -100,7 +100,7 @@ STICKERS_IDS = (
 
 # boolean settings 
 GROUP_FSUB = is_enabled('GROUP_FSUB', False) 
-PM_SEARCH = is_enabled('PM_SEARCH', False) #switch True or False for searching results in bot pm😃
+PM_SEARCH = is_enabled('PM_SEARCH', True) #switch True or False for searching results in bot pm😃
 IS_VERIFY = is_enabled('IS_VERIFY', True)
 AUTO_DELETE = is_enabled('AUTO_DELETE', False)
 WELCOME = is_enabled('WELCOME', True)
@@ -113,8 +113,8 @@ SPELL_CHECK = is_enabled("SPELL_CHECK", True)
 SHORTLINK = is_enabled('SHORTLINK', False)
 
 
-PAYMENT_QR = environ.get('PAYMENT_QR', 'https://telegra.ph/file/e1d10fb7d6a3c211f3fb9.jpg') #telegraph link of your QR code 
-UPI_ID = environ.get('UPI_ID', 'mitanshdhiman0001@okicici') # Add your upi id here
+PAYMENT_QR = environ.get('PAYMENT_QR', 'https://graph.org/file/32ad91bc956492005d5a8.png') #telegraph link of your QR code 
+UPI_ID = environ.get('UPI_ID', 'deepsatasiya@ibl') # Add your upi id here
 # for stream
 IS_STREAM = is_enabled('IS_STREAM', True) #true if you want stream feature active in your bot
 BIN_CHANNEL = environ.get("BIN_CHANNEL", "-1001346044919") #if is_stream = true then add a channel id ex: -10026393639
