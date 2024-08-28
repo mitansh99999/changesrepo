@@ -44,7 +44,7 @@ async def give_filter(client, message):
         btn = await is_subscribed(client, message, settings['fsub']) if settings.get('is_fsub', IS_FSUB) else None
         if btn:
             btn.append(
-                [InlineKeyboardButton("Unmute Me 🔕", callback_data=f"unmuteme#{user_id}")]
+                [InlineKeyboardButton("Unmute Me 🔕", callback_data=f"unmuteme#{userid}")]
             )
             reply_markup = InlineKeyboardMarkup(btn)
             try:
