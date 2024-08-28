@@ -44,7 +44,7 @@ async def give_filter(client, message):
         btn = await is_subscribed(client, message, settings['fsub']) if settings.get('is_fsub', IS_FSUB) else None
         if btn:
             btn.append(
-                [InlineKeyboardButton("Unmute Me 🔕", callback_data=f"unmuteme#{userid}")]
+                [InlineKeyboardButton("Unmute Me 🔕", callback_data="unmuteme#{user_id}")]
             )
             reply_markup = InlineKeyboardMarkup(btn)
             try:
@@ -523,7 +523,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         if userid == 0:
             await query.answer("You are anonymous admin !", show_alert=True)
             return
-        if userid != user_id:
+        if user_id != user_id:
             await query.answer("Not For You ☠️", show_alert=True)
             return
         btn = await is_subscribed(client, query, settings['fsub'])
