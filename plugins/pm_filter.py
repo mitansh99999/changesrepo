@@ -44,7 +44,7 @@ async def give_filter(client, message):
         btn = await is_subscribed(client, message, settings['fsub']) if settings.get('is_fsub', IS_FSUB) else None
         if btn:
             btn.append(
-                [InlineKeyboardButton("Unmute Me 🔕", callback_data=f"unmuteme#{chatid}")]
+                [InlineKeyboardButton("Unmute Me 🔕", callback_data=f"unmuteme#{user_id}")]
             )
             reply_markup = InlineKeyboardMarkup(btn)
             try:
@@ -1090,4 +1090,3 @@ async def advantage_spell_chok(message):
         await message.delete()
     except:
         pass
-
