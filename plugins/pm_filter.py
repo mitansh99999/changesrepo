@@ -517,14 +517,25 @@ async def cb_handler(client: Client, query: CallbackQuery):
         await query.message.delete()
 
     elif query.data.startswith("unmuteme"):
-        ident, chatid = query.data.split("#")
-        settings = await get_settings(int(chatid))
+        ident, userid = query.data.split("#")
+        user_id = query.from_user.id
+        settings = await get_settings(int(query.message.chat.id))
+        if userid == 0:
+            await query.answer("You are anonymous admin !", show_alert=True)
+            return
+        if userid != user_id:
+            await query.answer("Not For You ☠️", show_alert=True)
+            return
         btn = await is_subscribed(client, query, settings['fsub'])
         if btn:
            await query.answer("Kindly Join Given Channel To Get Unmute", show_alert=True)
         else:
             await client.unban_chat_member(query.message.chat.id, user_id)
             await query.answer("Unmuted Successfully !", show_alert=True)
+            try:
+                await query.message.delete()
+            except:
+                return
    
     elif query.data == "buttons":
         await query.answer("⚠️")
