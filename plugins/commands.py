@@ -128,7 +128,7 @@ async def start(client, message):
             reply_markup = InlineKeyboardMarkup(btn)
             await message.reply_photo(
                 photo=random.choice(PICS),
-                caption=f"👋 Hello {message.from_user.mention},\n\nPlease join and try again. 😇",
+                caption=f"👋 Hello {message.from_user.mention},\n\nYou Havent Joined Our Backup Channel 😡\n\nFollow The Instruction In The Image Above Or,\n\n1. Click on The 'Join Latest Movies & Series Backup' Button And Join The Channel\n\n2. After Joining The Channel Click On The 'Unmute Me' Button\n\n3. Now Enjoy Request Your Movie😇\n\nआपने हमारे बैकअप चैनल को ज्वाइन नहीं किया है 😡\n\nऊपर दी गई छवि में दिए गए निर्देशों का पालन करें या,\n\n1. 'ज्वाइन लेटेस्ट मूवीज़ एंड सीरीज़ बैकअप' बटन पर क्लिक करें और चैनल से जुड़ें\n\n2. चैनल से जुड़ने के बाद 'अनम्यूट मी' बटन पर क्लिक करें\n\n3. अब मजे लें अपनी मूवी का अनुरोध करें😇.",
                 reply_markup=reply_markup,
                 parse_mode=enums.ParseMode.HTML
             )
