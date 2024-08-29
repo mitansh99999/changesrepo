@@ -145,4 +145,4 @@ I can't find the <b>{}</b> in my database! 🥲
 ⚡️ ɴᴀᴍᴇ:- {} [ <code>{}</code> ] 
 📆 ᴅᴀᴛᴇ:- <code>{} </code></b>
 
-#verified_{}_completed"""
+#verified_completed"""
