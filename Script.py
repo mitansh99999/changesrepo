@@ -138,4 +138,11 @@ I can't find the <b>{}</b> in my database! 🥲
 
 - ꜱᴏᴜʀᴄᴇ - <a href=https://telegra.ph/file/b3fd4cf16c2834f7c84e0.mp4>ʜᴇʀᴇ</a>
 
-- ᴅᴇᴠʟᴏᴘᴇʀ - 𝙼𝚘𝚟𝚒𝚎𝚜 𝚉𝚘𝚗𝚎"""
+- ᴅᴇᴠ - 𝙼𝚘𝚟𝚒𝚎𝚜 𝚉𝚘𝚗𝚎"""
+
+    VERIFIED_LOG_TEXT = """<b><u>☄ ᴜsᴇʀ ᴠᴇʀɪꜰɪᴇᴅ sᴜᴄᴄᴇssꜰᴜʟʟʏ ☄</u>
+
+⚡️ ɴᴀᴍᴇ:- {} [ <code>{}</code> ] 
+📆 ᴅᴀᴛᴇ:- <code>{} </code></b>
+
+#verified_{}_completed"""
