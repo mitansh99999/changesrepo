@@ -50,7 +50,7 @@ async def give_filter(client, message):
             try:
                 await client.restrict_chat_member(chatid, message.from_user.id, ChatPermissions(can_send_messages=False))
                 await message.reply_photo(
-                    photo=random.choice(PICS),
+                    photo="https://telegra.ph//file/ad58d7836e5ff722ecd1b.jpg",
                     caption=f"👋 Hello {message.from_user.mention},\n\nPlease join and try again. 😇",
                     reply_markup=reply_markup,
                     parse_mode=enums.ParseMode.HTML
