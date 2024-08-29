@@ -136,3 +136,8 @@ else:
     else:
         print('Error - URL is not valid, exiting now')
         exit()
+
+
+SETTINGS = {
+            'log': LOG_CHANNEL
+    }
