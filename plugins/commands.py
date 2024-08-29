@@ -93,7 +93,7 @@ async def start(client, message):
         if verify_status['verify_token'] != token:
             return await message.reply("Your verify token is invalid.")
         await update_verify_status(message.from_user.id, is_verified=True, verified_time=time.time())
-        await client.send_message(LOG_CHANNEL, script.VERIFIED_LOG_TEXT.format(message.from_user.mention, message.from_user.id, datetime.datetime.now(pytz.timezone('Asia/Kolkata')).strftime('%d %B %Y'), num))
+        await client.send_message(LOG_CHANNEL, script.VERIFIED_LOG_TEXT.format(message.from_user.mention, message.from_user.id, datetime.datetime.now(pytz.timezone('Asia/Kolkata')).strftime('%d %B %Y')))
         if verify_status["link"] == "":
             reply_markup = None
         else:
