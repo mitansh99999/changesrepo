@@ -552,7 +552,7 @@ async def give_premium_cmd_handler(client, message):
                 chat_id=user_id,
                 text=f"<b>ᴘʀᴇᴍɪᴜᴍ ᴀᴅᴅᴇᴅ ᴛᴏ ʏᴏᴜʀ ᴀᴄᴄᴏᴜɴᴛ ꜰᴏʀ {time} ᴇɴᴊᴏʏ 😀\n</b>",                
             )
-            await client.send_message(LOG_CHANNEL, text=f"#Added_Premium\n\n👤 User - {message.from_user.mention}\n\n🪪 User Id - <code>{user_id}</code>\n\n⏰ Premium Access - {time}\n\n🎩 Joining - {current_time}\n\n⌛️ Expiry - {expiry_time}", disable_web_page_preview=True)
+            await client.send_message(LOG_CHANNEL, text=f"#Added_Premium\n\n👤 User - {message.from_user.mention}\n\n🪪 User Id - <code>{user_id}</code>\n\n⏰ Premium Access - {time}\n\n🎩 Joining - {current_time}\n\n⌛️ Expiry - {expiry_time}")
         else:
             await message.reply_text("Invalid time format. Please use '1day for days', '1hour for hours', or '1min for minutes', or '1month for months' or '1year for year'")
     else:
