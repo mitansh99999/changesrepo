@@ -541,6 +541,7 @@ async def give_premium_cmd_handler(client, message):
         user_id = int(message.command[1])  # Convert the user_id to integer
         time = message.command[2]        
         seconds = await get_seconds(time)
+        current_time = datetime.datetime.now()
         if seconds > 0:
             expiry_time = datetime.datetime.now() + datetime.timedelta(seconds=seconds)
             user_data = {"id": user_id, "expiry_time": expiry_time} 
@@ -551,6 +552,7 @@ async def give_premium_cmd_handler(client, message):
                 chat_id=user_id,
                 text=f"<b>ᴘʀᴇᴍɪᴜᴍ ᴀᴅᴅᴇᴅ ᴛᴏ ʏᴏᴜʀ ᴀᴄᴄᴏᴜɴᴛ ꜰᴏʀ {time} ᴇɴᴊᴏʏ 😀\n</b>",                
             )
+            await client.send_message(LOG_CHANNEL, text=f"#Added_Premium\n\n👤 User - {user.mention}\n\n🪪 User Id - <code>{user_id}</code>\n\n⏰ Premium Access - {time}\n\n🎩 Joining - {current_time}\n\n⌛️ Expiry - {expiry_time}", disable_web_page_preview=True)
         else:
             await message.reply_text("Invalid time format. Please use '1day for days', '1hour for hours', or '1min for minutes', or '1month for months' or '1year for year'")
     else:
