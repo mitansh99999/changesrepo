@@ -16,6 +16,49 @@ from utils import get_settings, get_size, is_subscribed, is_check_admin, get_sho
 import requests
 from telegraph import upload_file
 
+@Client.on_message(filters.command("list_premium") & filters.user(ADMINS))
+async def list_premium(client, message):
+    try:
+        # Define timezone
+        kolkata_tz = pytz.timezone('Asia/Kolkata')
+        
+        # Retrieve all users who have an expiry_time field
+        users_cursor = db.users.find({"expiry_time": {"$exists": True}})
+        users = await users_cursor.to_list(length=None)
+        
+        # Filter premium users
+        premium_users = []
+        now = datetime.datetime.now(kolkata_tz)  # Get the current time in Asia/Kolkata timezone
+        for user in users:
+            expiry_time = user.get("expiry_time")
+            # Ensure `expiry_time` is a datetime object and timezone-aware
+            if isinstance(expiry_time, datetime.datetime):
+                if expiry_time.tzinfo is None:
+                    # Make expiry_time timezone-aware if it's not
+                    expiry_time = kolkata_tz.localize(expiry_time)
+                if now <= expiry_time:
+                    premium_users.append(user)
+        
+        # Generate response
+        if premium_users:
+            message_text = "Premium Users:\n"
+            for user in premium_users:
+                name = user.get('name', 'N/A')
+                user_id = user['id']
+                expiry_time = user.get('expiry_time')
+                # Format the expiry time for display
+                formatted_expiry_time = expiry_time.strftime("%Y-%m-%d %H:%M:%S") if expiry_time else 'N/A'
+                message_text += f"ID: {user_id}, Name: {name}, Expiry Time: {formatted_expiry_time}\n"
+        else:
+            message_text = "No premium users found."
+        
+        # Send message
+        await message.reply(message_text)
+    except Exception as e:
+        # Log the exception and inform the user
+        logger.error(f"Error in /list_premium command: {e}")
+        await message.reply("An error occurred while retrieving the list of premium users.")
+
 @Client.on_message(filters.command("ask") & filters.incoming) #add your support grp
 async def aiRes(_, message):
     if message.chat.id == SUPPORT_GROUP:
