@@ -656,3 +656,20 @@ async def check_plans_cmd(client, message):
         await message.reply_text(f"**😢 You Don't Have Any Premium Subscription.\n\n Check Out Our Premium /plans**",reply_markup=reply_markup)
         await asyncio.sleep(2)
         await m.delete()
+
+async def check_and_notify_premium_status(client, user_id):
+    current_time = datetime.datetime.now()
+
+    if await db.has_premium_access(user_id):
+        user_data = await db.get_user_data(user_id)
+        expiry_time = user_data['expiry_time']
+
+        if current_time > expiry_time:
+            # Premium has expired
+            await db.remove_premium(user_id)
+            await client.send_message(
+                chat_id=user_id,
+                text="<b>Your premium access has expired. Please visit our /plans to renew your subscription.</b>"
+            )
+            return False  # Indicate that premium access has expired
+    return True  # Indicate that premium access is still valid
