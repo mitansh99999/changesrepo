@@ -27,7 +27,7 @@ API_HASH = environ.get('API_HASH', '74689cc3a42a7afc507453c94a0cfeb9') #api hash
 if len(API_HASH) == 0:
     print('Error - API_HASH is missing, exiting now')
     exit()
-BOT_TOKEN = environ.get('BOT_TOKEN', '6131871030:AAH9pz46zImHh-bsgS7MjZOe9CR0f4oUqWY') #bot token from botfather
+BOT_TOKEN = environ.get('BOT_TOKEN', '7240556305:AAHB0Od9n1gTkq1PtuFRjA5FpexxfAJyZzM') #bot token from botfather
 if len(BOT_TOKEN) == 0:
     print('Error - BOT_TOKEN is missing, exiting now')
     exit()
@@ -68,7 +68,7 @@ else:
     SUPPORT_GROUP = int(SUPPORT_GROUP)
 
 # MongoDB information
-DATABASE_URL = environ.get('DATABASE_URL', "mongodb+srv://md:md@cluster0.kznetvq.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0") #mongo db url
+DATABASE_URL = environ.get('DATABASE_URL', "mongodb+srv://m:m@cluster0.9vcrm.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0") #mongo db url
 if len(DATABASE_URL) == 0:
     print('Error - DATABASE_URL is missing, exiting now')
     exit()
