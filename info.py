@@ -112,7 +112,7 @@ IMDB = is_enabled('IMDB', True)
 SPELL_CHECK = is_enabled("SPELL_CHECK", True)
 SHORTLINK = is_enabled('SHORTLINK', False)
 
-
+RENEW_TEXT = is_enabled('RENEW_TEXT' , True) #True If You Want A renew Message to Be Sent After Expiry of Every Premium Subscription
 PAYMENT_QR = environ.get('PAYMENT_QR', 'https://graph.org/file/32ad91bc956492005d5a8.png') #telegraph link of your QR code 
 UPI_ID = environ.get('UPI_ID', 'deepsatasiya@ibl') # Add your upi id here
 # for stream
