@@ -5,7 +5,7 @@ import math
 from pyrogram.errors.exceptions.bad_request_400 import MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty
 from Script import script
 from datetime import datetime, timedelta
-from info import STICKERS_IDS, ADMINS, URL, MAX_BTN, BIN_CHANNEL, IS_STREAM, DELETE_TIME, FILMS_LINK, AUTH_CHANNEL, IS_VERIFY, VERIFY_EXPIRE, LOG_CHANNEL, SUPPORT_GROUP, SUPPORT_LINK, UPDATES_LINK, PICS, PROTECT_CONTENT, IMDB, AUTO_FILTER, SPELL_CHECK, IMDB_TEMPLATE, AUTO_DELETE, LANGUAGES, IS_FSUB, PAYMENT_QR, GROUP_FSUB, PM_SEARCH, UPI_ID
+from info import STREAM_PREMIUM, STICKERS_IDS, ADMINS, URL, MAX_BTN, BIN_CHANNEL, IS_STREAM, DELETE_TIME, FILMS_LINK, AUTH_CHANNEL, IS_VERIFY, VERIFY_EXPIRE, LOG_CHANNEL, SUPPORT_GROUP, SUPPORT_LINK, UPDATES_LINK, PICS, PROTECT_CONTENT, IMDB, AUTO_FILTER, SPELL_CHECK, IMDB_TEMPLATE, AUTO_DELETE, LANGUAGES, IS_FSUB, PAYMENT_QR, GROUP_FSUB, PM_SEARCH, UPI_ID
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, ChatPermissions, InputMediaPhoto
 from pyrogram import Client, filters, enums
 from pyrogram.errors import FloodWait, UserIsBlocked, MessageNotModified, PeerIdInvalid, ChatAdminRequired
@@ -20,16 +20,30 @@ REACTIONS = ["🔥", "❤️", "😍", "⚡"]
 
 @Client.on_callback_query(filters.regex(r"^stream"))
 async def aks_downloader(bot, query):
+    user_id = query.from_user.id  # Get the user ID from the query
+    
+    # Check if the streaming feature should be premium-only
+    if stream_premium:
+        # If premium-only, check if the user has premium access
+        has_premium = await db.has_premium_access(user_id)
+        if not has_premium:
+            # If not premium, notify the user and stop further processing
+            await query.answer("This feature is available only for premium users.")
+            return
+
+    # If stream_premium is False or user has premium access, proceed with streaming
     file_id = query.data.split('#', 1)[1]
     msg = await bot.send_cached_media(chat_id=BIN_CHANNEL, file_id=file_id)
     watch = f"{URL}watch/{msg.id}"
     download = f"{URL}download/{msg.id}"
-    btn= [[
+    
+    btn = [[
         InlineKeyboardButton("ᴡᴀᴛᴄʜ ᴏɴʟɪɴᴇ", url=watch),
         InlineKeyboardButton("ꜰᴀsᴛ ᴅᴏᴡɴʟᴏᴀᴅ", url=download)
     ],[
         InlineKeyboardButton('❌ ᴄʟᴏsᴇ ❌', callback_data='close_data')
     ]]
+    
     await query.edit_message_reply_markup(
         reply_markup=InlineKeyboardMarkup(btn)
     )
