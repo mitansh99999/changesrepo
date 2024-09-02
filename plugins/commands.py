@@ -634,7 +634,19 @@ async def plans_cmd_handler(client, message):
     reply_markup = InlineKeyboardMarkup(btn)
     await message.reply_photo(
         photo=PAYMENT_QR,
-        caption="**Pʀᴇᴍɪᴜᴍ Fᴇᴀᴛᴜʀᴇs 🎁\n\n☆ No Need To Verify\n☆ Ad Free Experience\n☆ Unlimited Movie And Series",
+        caption=(
+            "**Pʀᴇᴍɪᴜᴍ Fᴇᴀᴛᴜʀᴇs 🎁**\n\n"
+            "☆ No Need To Verify\n"
+            "☆ Ad Free Experience\n"
+            "☆ Unlimited Movie And Series\n\n"
+            "**Premium Plans**\n"
+            "• ₹10 - 1 day (Trial)\n"
+            "• ₹25 - 1 Week (Trial)\n"
+            "• ₹50 - 1 Month\n"
+            "• ₹120 - 3 Months\n"
+            "• ₹220 - 6 Months\n"
+            "• ₹400 - 1 Year"
+        ),
         reply_markup=reply_markup
     )
         
