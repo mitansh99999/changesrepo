@@ -205,14 +205,5 @@ class Database:
         expiry_time = datetime.datetime.now() + datetime.timedelta(seconds=seconds)
         user_data = {"id": user_id, "expiry_time": expiry_time, "has_free_trial": True}
         await self.users.update_one({"id": user_id}, {"$set": user_data}, upsert=True)
-
-    async def get_expired_users(self):
-        kolkata_tz = pytz.timezone('Asia/Kolkata')
-        now = datetime.datetime.now(kolkata_tz)
-        print(f"Current time (Asia/Kolkata): {now}")
-        cursor = self.users.find({"expiry_time": {"$lt": now}})
-        expired_users = [user async for user in cursor]
-        print(f"Expired users count: {len(expired_users)}")
-        return expired_users
         
 db = Database()
