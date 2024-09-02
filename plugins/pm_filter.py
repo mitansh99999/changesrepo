@@ -28,7 +28,7 @@ async def aks_downloader(bot, query):
         has_premium = await db.has_premium_access(user_id)
         if not has_premium:
             # If not premium, notify the user and stop further processing
-            await query.answer("This feature is available only for premium users.")
+            await query.answer("This Feature Is Available Only For Premium Users. /plans CheckOut Our Plans")
             return
 
     # If stream_premium is False or user has premium access, proceed with streaming
