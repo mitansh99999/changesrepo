@@ -204,7 +204,8 @@ class Database:
         user_data = {"id": user_id, "expiry_time": expiry_time, "has_free_trial": True}
         await self.users.update_one({"id": user_id}, {"$set": user_data}, upsert=True)
 
-    async def get_expired_users(self):
+    async def get_expired_users(self, userid):
+        user_id = userid
         now = datetime.datetime.now()
         expired_users = self.users.find({"expiry_time": {"$lt": now}})
         return [user async for user in expired_users]
