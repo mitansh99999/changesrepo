@@ -17,7 +17,6 @@ from fuzzywuzzy import process
 BUTTONS = {}
 CAP = {}
 REACTIONS = ["🔥", "❤️", "😍", "⚡"]
-app = Client("auto_filter_bot", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
 
 @Client.on_callback_query(filters.regex(r"^stream"))
 async def aks_downloader(bot, query):
