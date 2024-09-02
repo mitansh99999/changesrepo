@@ -2,6 +2,7 @@ from motor.motor_asyncio import AsyncIOMotorClient
 from info import DATABASE_NAME, DATABASE_URL, IMDB_TEMPLATE, WELCOME_TEXT, AUTH_CHANNEL, LINK_MODE, TUTORIAL, SHORTLINK_URL, SHORTLINK_API, SHORTLINK, FILE_CAPTION, IMDB, WELCOME, SPELL_CHECK, PROTECT_CONTENT, AUTO_FILTER, AUTO_DELETE, IS_STREAM
 import time
 import datetime
+import asyncio
 
 client = AsyncIOMotorClient(DATABASE_URL)
 mydb = client[DATABASE_NAME]
@@ -204,10 +205,12 @@ class Database:
         user_data = {"id": user_id, "expiry_time": expiry_time, "has_free_trial": True}
         await self.users.update_one({"id": user_id}, {"$set": user_data}, upsert=True)
 
-    async def get_expired_users(self, userid):
-        user_id = userid
+    async def get_expired_users(self):
         now = datetime.datetime.now()
-        expired_users = self.users.find({"expiry_time": {"$lt": now}})
-        return [user async for user in expired_users]
+        cursor = self.users.find({"expiry_time": {"$lt": now}})
+        expired_users = []
+        async for user in cursor:
+            expired_users.append(user)
+        return expired_users
         
 db = Database()
