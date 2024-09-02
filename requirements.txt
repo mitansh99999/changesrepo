@@ -13,3 +13,4 @@ telegraph
 speedtest-cli
 fuzzywuzzy
 python-Levenshtein
+apscheduler
