@@ -667,19 +667,3 @@ async def check_plans_cmd(client, message):
         await message.reply_text(f"**😢 You Don't Have Any Premium Subscription.\n\n Check Out Our Premium /plans**",reply_markup=reply_markup)
         await asyncio.sleep(2)
         await m.delete()
-
-async def check_and_notify_expired_premiums():
-    now = datetime.datetime.now(pytz.timezone('Asia/Kolkata'))
-    expired_users = users_collection.find({"expiry_time": {"$lt": now}, "notified": {"$ne": True}})
-    
-    async for user in expired_users:
-        chat_id = user.get("chat_id")
-        if chat_id:
-            await client.send_message(chat_id, "Your premium has expired. Please renew to continue enjoying premium features.")
-            await users_collection.update_one({"id": user["id"]}, {"$set": {"notified": True}})
-
-# Periodically check every minute
-async def periodic_task():
-    while True:
-        await check_and_notify_expired_premiums()
-        await asyncio.sleep(60)  # 60 seconds
