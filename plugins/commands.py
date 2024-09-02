@@ -667,29 +667,3 @@ async def check_plans_cmd(client, message):
         await message.reply_text(f"**😢 You Don't Have Any Premium Subscription.\n\n Check Out Our Premium /plans**",reply_markup=reply_markup)
         await asyncio.sleep(2)
         await m.delete()
-
-@Client.on_message(filters.command("expire_msg"))
-async def expire_msg(client: Client, message: Message):
-    # Check if the user issuing the command is authorized
-    user_id = message.from_user.id
-    if not await db.is_user_exist(user_id):
-        await message.reply_text("You are not authorized to use this command.")
-        return
-
-    # Fetch expired users
-    expired_users = await db.get_expired_users()
-
-    if not expired_users:
-        await message.reply_text("No users with expired premium.")
-        return
-
-    message_text = 'Your premium subscription has expired. Please renew to continue using premium features. Use /plan Command To Explore Our Premium Plans.'
-
-    for user in expired_users:
-        chat_id = user['id']
-        try:
-            await client.send_message(chat_id=chat_id, text=message_text)
-        except Exception as e:
-            print(f"Error sending message to {chat_id}: {e}")
-
-    await message.reply_text(f'Sent renewal messages to {len(expired_users)} users.')
