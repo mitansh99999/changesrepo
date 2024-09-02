@@ -5,7 +5,7 @@ import math
 from pyrogram.errors.exceptions.bad_request_400 import MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty
 from Script import script
 from datetime import datetime, timedelta
-from info import STREAM_PREMIUM, STICKERS_IDS, ADMINS, URL, MAX_BTN, BIN_CHANNEL, IS_STREAM, DELETE_TIME, FILMS_LINK, AUTH_CHANNEL, IS_VERIFY, VERIFY_EXPIRE, LOG_CHANNEL, SUPPORT_GROUP, SUPPORT_LINK, UPDATES_LINK, PICS, PROTECT_CONTENT, IMDB, AUTO_FILTER, SPELL_CHECK, IMDB_TEMPLATE, AUTO_DELETE, LANGUAGES, IS_FSUB, PAYMENT_QR, GROUP_FSUB, PM_SEARCH, UPI_ID
+from info import API_ID, API_HASH, BOT_TOKEN, STREAM_PREMIUM, STICKERS_IDS, ADMINS, URL, MAX_BTN, BIN_CHANNEL, IS_STREAM, DELETE_TIME, FILMS_LINK, AUTH_CHANNEL, IS_VERIFY, VERIFY_EXPIRE, LOG_CHANNEL, SUPPORT_GROUP, SUPPORT_LINK, UPDATES_LINK, PICS, PROTECT_CONTENT, IMDB, AUTO_FILTER, SPELL_CHECK, IMDB_TEMPLATE, AUTO_DELETE, LANGUAGES, IS_FSUB, PAYMENT_QR, GROUP_FSUB, PM_SEARCH, UPI_ID
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, ChatPermissions, InputMediaPhoto
 from pyrogram import Client, filters, enums
 from pyrogram.errors import FloodWait, UserIsBlocked, MessageNotModified, PeerIdInvalid, ChatAdminRequired
@@ -17,6 +17,7 @@ from fuzzywuzzy import process
 BUTTONS = {}
 CAP = {}
 REACTIONS = ["🔥", "❤️", "😍", "⚡"]
+app = Client("auto_filter_bot", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
 
 @Client.on_callback_query(filters.regex(r"^stream"))
 async def aks_downloader(bot, query):
@@ -1104,3 +1105,13 @@ async def advantage_spell_chok(message):
         await message.delete()
     except:
         pass
+
+async def periodic_task(interval):
+    while True:
+        await db.check_and_notify_expired_plans()
+        await asyncio.sleep(interval)
+
+async def main():
+    await app.start()
+    asyncio.create_task(periodic_task(60))  # Check every 60 seconds
+    await app.idle()
