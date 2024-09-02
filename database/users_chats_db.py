@@ -3,6 +3,7 @@ from info import DATABASE_NAME, DATABASE_URL, IMDB_TEMPLATE, WELCOME_TEXT, AUTH_
 import time
 import datetime
 import asyncio
+import pytz
 
 client = AsyncIOMotorClient(DATABASE_URL)
 mydb = client[DATABASE_NAME]
