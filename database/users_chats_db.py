@@ -206,11 +206,12 @@ class Database:
         await self.users.update_one({"id": user_id}, {"$set": user_data}, upsert=True)
 
     async def get_expired_users(self):
-        now = datetime.datetime.now()
+        kolkata_tz = pytz.timezone('Asia/Kolkata')
+        now = datetime.datetime.now(kolkata_tz)
+        print(f"Current time (Asia/Kolkata): {now}")
         cursor = self.users.find({"expiry_time": {"$lt": now}})
-        expired_users = []
-        async for user in cursor:
-            expired_users.append(user)
+        expired_users = [user async for user in cursor]
+        print(f"Expired users count: {len(expired_users)}")
         return expired_users
         
 db = Database()
