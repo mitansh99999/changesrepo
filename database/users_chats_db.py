@@ -4,7 +4,7 @@ import time
 import datetime
 import asyncio
 import pytz
-from pyrogram import Clien
+from pyrogram import Client
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 
 client = AsyncIOMotorClient(DATABASE_URL)
