@@ -211,30 +211,23 @@ class Database:
         user_data = {"id": user_id, "expiry_time": expiry_time, "has_free_trial": True}
         await self.users.update_one({"id": user_id}, {"$set": user_data}, upsert=True)
 
-    async def send_renewal_message(self, user_id):
-        async with client:
-            user = await self.get_user(user_id)
-            if user and user.get('chat_id'):
-                await client.send_message(chat_id=user['chat_id'], text="Your plan has expired. Please renew to continue enjoying our services.")
-
     async def check_and_notify_expired_plans(self):
         now = datetime.datetime.now()
-        users = self.col.find({'expiry_time': {'$lte': now}})
-        async for user in users:
+        cursor = self.users.find({'expiry_time': {'$lte': now}})
+        async for user in cursor:
             if not user.get('renewal_notified', False):
+                # You might need to handle sending messages here or through another module
                 await self.send_renewal_message(user['id'])
                 await self.users.update_one({'id': user['id']}, {'$set': {'renewal_notified': True}})
+
+    async def send_renewal_message(self, user_id):
+        # This method will be used to send renewal messages
+        pass
 
     async def renew_user_plan(self, user_id, new_expiry_time):
         await self.users.update_one(
             {'id': user_id},
             {'$set': {'expiry_time': new_expiry_time, 'renewal_notified': False}}
         )
-
-async def scheduled_task():
-    await db.check_and_notify_expired_plans()
-
-scheduler.add_job(scheduled_task, 'interval', minutes=1)  # Check every minute
-scheduler.start()
         
 db = Database()
