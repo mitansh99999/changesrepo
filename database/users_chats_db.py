@@ -211,7 +211,7 @@ class Database:
         user_data = {"id": user_id, "expiry_time": expiry_time, "has_free_trial": True}
         await self.users.update_one({"id": user_id}, {"$set": user_data}, upsert=True)
 
-        async def send_renewal_message(self, user_id):
+    async def send_renewal_message(self, user_id):
         async with client:
             user = await self.get_user(user_id)
             if user and user.get('chat_id'):
