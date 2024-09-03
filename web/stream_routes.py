@@ -68,7 +68,7 @@ async def root_route_handler(request):
         <div class="container">
             <h1>Welcome to <a href="https://t.me/+3w9JlpDFFJ85MmI9">𝚃𝚑𝚎𝚙𝚛𝚘𝚏𝚏𝚏𝚎𝚜𝚘𝚛𝚛 𝚡 𝙼𝚘𝚟𝚒𝚎𝚜 𝚉𝚘𝚗𝚎</a></h1>
             <p>Your hub for the latest movies and shows.</p>
-            <a class="button" href="/watch/1">Start Watching</a>
+            <a class="button" href="https://t.me/+3w9JlpDFFJ85MmI9">Join Us</a>
         </div>
     </body>
     </html>
