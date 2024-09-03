@@ -119,8 +119,6 @@
     </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/video.js/7.20.2/video.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/videojs-contrib-ads/6.3.1/videojs-contrib-ads.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/videojs-vast-plugin/3.4.2/videojs-vast.min.js"></script>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -132,16 +130,10 @@
                 sources: [{
                     src: '%s',
                     type: 'video/mp4'
-                }],
-                plugins: {
-                    vast: {
-                        tagUrl: 'https://vast.yomeno.xyz/vast?spot_id=1409625' // Replace with your VAST tag URL
-                    }
-                }
+                }]
             });
 
-            // Optional: Set up additional ad options if needed
-            player.ads();
+            // Optional: Set up additional options if needed
         });
 
         const body = document.querySelector('body');
