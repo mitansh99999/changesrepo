@@ -14,6 +14,11 @@ async def media_watch(message_id, user_id=None):
     src = urllib.parse.urljoin(URL, f'download/{message_id}')
     tag = mime_type.split('/')[0].strip()
 
+    # Check if the user has premium access
+    SHOW_ADS = True
+    if user_id is not None:
+        show_ads = not await db.has_premium_access(int(user_id))
+
     # Initialize the HTML content
     html = '<h1>This is not streamable file</h1>'
 
@@ -24,5 +29,9 @@ async def media_watch(message_id, user_id=None):
 
             # Prepare final HTML
             html = html_template.replace('tag', tag) % (heading, file_name, src)
-    
+            
+            # If the user is premium, remove the ad section
+            if not SHOW_ADS:
+                html = html.replace('<!-- Ads Section Start -->', '').replace('<!-- Ads Section End -->', '')
+
     return html
