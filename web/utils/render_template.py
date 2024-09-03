@@ -24,17 +24,10 @@ async def media_watch(message_id, user_id=None):
             heading = 'Watch - {}'.format(file_name)
             html_template = await r.read()
 
-            # Determine if ads should be shown
-            if SHOW_ADS:
-                if user_id is None or not await db.has_premium_access(user_id):
-                    ad_content = AD_SCRIPT
-                else:
-                    ad_content = ''
-            else:
-                ad_content = ''
-
             # Prepare final HTML
             html = html_template.replace('tag', tag) % (heading, file_name, src)
-            html = html.replace('<!-- Ad content will be inserted here -->', ad_content)
+            
+            # Insert ad content into the placeholder
+            html = html.replace('<div class="ad-container">', f'<div class="ad-container">{AD_SCRIPT}')
     
     return html
