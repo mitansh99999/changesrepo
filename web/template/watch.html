@@ -9,9 +9,7 @@
     <link rel="stylesheet" type='text/css' href="https://drive----google.com/uc?export=view&id=1pVLG4gZy7jdow3sO-wFS06aP_A9QX0O6">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Delius">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/video.js/7.20.2/video-js.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
     <style>
       marquee {
           font-size: 30px;
@@ -32,7 +30,6 @@
           margin: 0;
           color: White;
       }
-
       header p {
           font-size: 1rem;
           margin: 5px 0;
@@ -53,19 +50,17 @@
           display: flex;
           align-items: center;
       }
-
       .home-button i {
           margin-right: 8px;
       }
-
       .home-button:hover {
           background-color: #000000;
       }
-
       .container {
           padding: 20px;
       }
     </style>
+    <script src="https://cdn.jwplayer.com/libraries/your-jwplayer-library-id.js"></script> <!-- Replace with your JW Player library ID -->
 </head>
 
 <body>
@@ -82,9 +77,8 @@
     </header>
 
     <div class="container">
-        <video id="video-player" class="video-js vjs-default-skin" controls preload="auto" width="640" height="264">
-            <source src="%s" type="video/mp4">
-        </video>
+        <tag src="%s" class="jw-player"></tag>
+        <div id="jw-player"></div> <!-- JW Player container -->
     </div>
 
     <!-- Adsterra Banner Ad Integration -->
@@ -100,6 +94,7 @@
         </script>
         <script type="text/javascript" src="//www.topcreativeformat.com/3980ae2f35e1b4bd87dcc80fea1be8cd/invoke.js"></script>
     </div>
+
     <!-- Adsterra Banner Ad Integration -->
     <div class="ads-container" style="margin: 20px 0; text-align: center;">
         <script type="text/javascript">
@@ -118,22 +113,15 @@
         <center><h4>Video not playing? Possibly because your browser or the player doesn't support codec. Please download and watch.</h4></center>
     </footer>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/video.js/7.20.2/video.min.js"></script>
-
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            var player = videojs('video-player', {
+            jwplayer('jw-player').setup({
+                file: '%s', // Video file URL
+                width: '100%',
+                height: 'auto',
                 controls: true,
-                autoplay: false,
-                preload: 'auto',
-                playbackRates: [0.5, 1, 1.5, 2], // Playback rate controls
-                sources: [{
-                    src: '%s',
-                    type: 'video/mp4'
-                }]
+                autoplay: false
             });
-
-            // Optional: Set up additional options if needed
         });
 
         const body = document.querySelector('body');
