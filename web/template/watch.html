@@ -11,67 +11,68 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Delius">
     <link rel="stylesheet" href="https://cdn.plyr.io/3.6.9/plyr.css" />
 
-
-<style>
-      marquee{
-      font-size: 30px;
-      font-weight: 800;
-      color: Blue;
-      font-family: sans-serif;
-      }
-    </style>
     <style>
       marquee{
-      font-size: 30px;
-      font-weight: 800;
-      color: Blue;
-      font-family: sans-serif;
+          font-size: 30px;
+          font-weight: 800;
+          color: Blue;
+          font-family: sans-serif;
       }
     </style>
     <script type='text/javascript' src='//pl17224193.cpmrevenuegate.com/ca/5e/c0/ca5ec0ac3cdfdf9964a67e3144258df1.js'></script>
 </head>
 
 <body>
-	
     <header>
-        <marquee bgcolor="#f7f305"
-<div class="toogle"></div>
-        <div id="file-name">
-            %s
-        </div>
-</marquee>
+        <marquee bgcolor="#f7f305">
+            <div class="toogle"></div>
+            <div id="file-name">
+                %s
+            </div>
+        </marquee>
     </header>
 
     <div class="container">
         <tag src="%s" class="player"></tag>
     </div>
-    <!-- Placeholder for Ads -->
-    <div class="ad-container">
-    </div> 
+
+    <!-- Adsterra Banner Ad Integration -->
+    <div class="ad-container" style="margin: 20px 0; text-align: center;">
+        <script type="text/javascript">
+            atOptions = {
+                'key' : 'cf7b7d9991e0796f04f6cb810b75eecb',
+                'format' : 'iframe',
+                'height' : 60,
+                'width' : 468,
+                'params' : {}
+            };
+        </script>
+        <script type="text/javascript" src="//www.topcreativeformat.com/cf7b7d9991e0796f04f6cb810b75eecb/invoke.js"></script>
+    </div>
 
     <footer>
-	    <center><h4>Video not playing? Possibly because your browser or the player doesn't support codec. Please download and watch.</h4></center>
-	    
+        <center><h4>Video not playing? Possibly because your browser or the player doesn't support codec. Please download and watch.</h4></center>
     </footer>
+
     <script src="https://cdn.plyr.io/3.6.9/plyr.js"></script>
-	<script>
+    <script>
         const controls = [
-              'play-large',
-              'rewind',
-              'play', 
-              'fast-forward', 
-              'progress', 
-              'current-time',
-              'duration',
-              'mute',
-              'volume',
-              'captions',
-              'settings',
-              'pip',
-              'airplay',
-              'download',
-              'fullscreen'
-            ];
+            'play-large',
+            'rewind',
+            'play', 
+            'fast-forward', 
+            'progress', 
+            'current-time',
+            'duration',
+            'mute',
+            'volume',
+            'captions',
+            'settings',
+            'pip',
+            'airplay',
+            'download',
+            'fullscreen'
+        ];
         document.addEventListener('DOMContentLoaded', () => {
             const player = Plyr.setup('.player', { controls });
         });
