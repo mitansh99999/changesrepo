@@ -6,7 +6,18 @@ import urllib.parse
 import aiofiles
 import aiohttp
 
-AD_SCRIPT = "<script type='text/javascript' src='//pl24249468.cpmrevenuegate.com/e8/17/6d/e8176d0f0a248f9364dfe3b5f43b5c47.js'></script>"
+AD_SCRIPT = """
+<script type="text/javascript">
+    atOptions = {
+        'key' : 'cf7b7d9991e0796f04f6cb810b75eecb',
+        'format' : 'iframe',
+        'height' : 60,
+        'width' : 468,
+        'params' : {}
+    };
+</script>
+<script type="text/javascript" src="//www.topcreativeformat.com/cf7b7d9991e0796f04f6cb810b75eecb/invoke.js"></script>
+"""
 
 async def media_watch(message_id, user_id=None):
     # Fetch the media message details
