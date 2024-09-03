@@ -80,8 +80,7 @@ async def root_route_handler(request):
 async def watch_handler(request):
     try:
         message_id = int(request.match_info['message_id'])
-        user_id = request.query.get('user_id')
-        return web.Response(text=await media_watch(message_id, user_id), content_type='text/html')
+        return web.Response(text=await media_watch(message_id), content_type='text/html')
     except:
         return web.Response(text="<h1>Something went wrong</h1>", content_type='text/html')
 
