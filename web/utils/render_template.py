@@ -1,7 +1,7 @@
 from info import BIN_CHANNEL, URL, SHOW_ADS
 from utils import temp
 from web.utils.custom_dl import TGCustomYield
-from users_chats_db import db
+from database.users_chats_db import db
 import urllib.parse
 import aiofiles
 import aiohttp
