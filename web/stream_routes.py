@@ -14,7 +14,66 @@ routes = web.RouteTableDef()
 
 @routes.get("/", allow_head=True)
 async def root_route_handler(request):
-    return web.Response(text='<h1 align="center"><a href="https://t.me/+3w9JlpDFFJ85MmI9"><b>𝚃𝚑𝚎𝚙𝚛𝚘𝚏𝚏𝚏𝚎𝚜𝚘𝚛𝚛 𝚡 𝙼𝚘𝚟𝚒𝚎𝚜 𝚉𝚘𝚗𝚎</b></a></h1>', content_type='text/html')
+        html_content = '''
+    <html>
+    <head>
+        <title>Welcome to Theproffessor x Movies Zone</title>
+        <style>
+            body {
+                background-color: #121212;
+                color: #FFFFFF;
+                font-family: Arial, sans-serif;
+                text-align: center;
+                margin: 0;
+                padding: 0;
+            }
+            .container {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+            }
+            h1 {
+                font-size: 3rem;
+                margin-bottom: 1rem;
+            }
+            a {
+                color: #1DB954;
+                text-decoration: none;
+                font-weight: bold;
+            }
+            a:hover {
+                text-decoration: underline;
+            }
+            .button {
+                background-color: #1DB954;
+                border: none;
+                color: white;
+                padding: 15px 32px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                margin-top: 20px;
+                border-radius: 25px;
+                cursor: pointer;
+            }
+            .button:hover {
+                background-color: #1ed760;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Welcome to <a href="https://t.me/+3w9JlpDFFJ85MmI9">𝚃𝚑𝚎𝚙𝚛𝚘𝚏𝚏𝚏𝚎𝚜𝚘𝚛𝚛 𝚡 𝙼𝚘𝚟𝚒𝚎𝚜 𝚉𝚘𝚗𝚎</a></h1>
+            <p>Your hub for the latest movies and shows.</p>
+            <a class="button" href="/watch/1">Start Watching</a>
+        </div>
+    </body>
+    </html>
+    '''
+    return web.Response(text=html_content, content_type='text/html')
 
 
 @routes.get("/watch/{message_id}")
