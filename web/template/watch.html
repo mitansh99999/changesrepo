@@ -118,6 +118,9 @@
     </footer>
 
     <script src="https://cdn.plyr.io/3.6.9/plyr.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/videojs-contrib-ads@6.6.5/dist/videojs-contrib-ads.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/videojs-ima@1.7.2/dist/videojs.ima.min.js"></script>
+
     <script>
         const controls = [
             'play-large',
@@ -136,16 +139,25 @@
             'download',
             'fullscreen'
         ];
+
         document.addEventListener('DOMContentLoaded', () => {
             const player = Plyr.setup('.player', { controls });
-        });
 
-        const body = document.querySelector('body');
-        const footer = document.querySelector('footer');
-        const toogle = document.querySelector('.toogle');
+            const vastUrl = "https://vast.yomeno.xyz/vast?spot_id=1409625";
+
+            const video = document.getElementById('video-player');
+
+            video.addEventListener('play', function() {
+                const adContainer = document.createElement('div');
+                adContainer.className = 'ad-container';
+                adContainer.innerHTML = `<video-ads vast-url="${vastUrl}"></video-ads>`;
+                document.body.appendChild(adContainer);
+            });
+        });
     </script>
+
     <script type='text/javascript' src='//pl24251323.cpmrevenuegate.com/eb/89/c8/eb89c85ae5649474a7c717e1653a031b.js'></script>
     <script async="async" data-cfasync="false" src="//pl17299233.cpmrevenuegate.com/2f2748a50a427e702b662c40fd2d5b9f/invoke.js"></script>
-<div id="container-2f2748a50a427e702b662c40fd2d5b9f"></div>
+    <div id="container-2f2748a50a427e702b662c40fd2d5b9f"></div>
 </body>
 </html>
