@@ -120,7 +120,21 @@
                 width: '100%',
                 height: 'auto',
                 controls: true,
-                autoplay: false
+                autoplay: false,
+                playbackRateControls: true, // Enable playback rate controls
+                qualityLevels: true, // Enable quality level selection
+                captions: { // Enable captions (if available)
+                    color: '#FFF',
+                    fontSize: 14,
+                    backgroundOpacity: 0.7,
+                },
+                plugins: {
+                    'https://cdn.jwplayer.com/players/your-plugins-library-id.js': {} // Replace with your plugin library ID
+                },
+                advertising: { // Optional: Add advertising setup if needed
+                    client: 'vast',
+                    tag: 'https://example.com/vast-tag' // Replace with your VAST tag URL
+                }
             });
         });
 
