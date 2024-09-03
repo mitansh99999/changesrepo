@@ -73,7 +73,7 @@ async def root_route_handler(request):
     </body>
     </html>
     '''
-return web.Response(text=html_content, content_type='text/html')
+        return web.Response(text=html_content, content_type='text/html')
 
 
 @routes.get("/watch/{message_id}")
