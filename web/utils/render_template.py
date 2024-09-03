@@ -6,19 +6,6 @@ import urllib.parse
 import aiofiles
 import aiohttp
 
-AD_SCRIPT = """
-<script type="text/javascript">
-    atOptions = {
-        'key' : 'cf7b7d9991e0796f04f6cb810b75eecb',
-        'format' : 'iframe',
-        'height' : 60,
-        'width' : 468,
-        'params' : {}
-    };
-</script>
-<script type="text/javascript" src="//www.topcreativeformat.com/cf7b7d9991e0796f04f6cb810b75eecb/invoke.js"></script>
-"""
-
 async def media_watch(message_id, user_id=None):
     # Fetch the media message details
     media_msg = await temp.BOT.get_messages(BIN_CHANNEL, message_id)
@@ -37,8 +24,5 @@ async def media_watch(message_id, user_id=None):
 
             # Prepare final HTML
             html = html_template.replace('tag', tag) % (heading, file_name, src)
-            
-            # Insert ad content into the placeholder
-            html = html.replace('<div class="ad-container">', f'<div class="ad-container">{AD_SCRIPT}')
     
     return html
