@@ -9,7 +9,6 @@
     <link rel="stylesheet" type='text/css' href="https://drive----google.com/uc?export=view&id=1pVLG4gZy7jdow3sO-wFS06aP_A9QX0O6">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Delius">
-    <link rel="stylesheet" href="https://cdn.fluidplayer.com/v3/current/fluidplayer.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <style>
@@ -78,10 +77,7 @@
     </header>
 
     <div class="container">
-        <video id="video-player" controls data-fluid-player>
-            <source src="%s" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
+        <div id="video-player"></div> <!-- JW Player requires a div for initialization -->
     </div>
 
     <!-- Adsterra Banner Ad Integration -->
@@ -102,36 +98,22 @@
         <center><h4>Video not playing? Possibly because your browser or the player doesn't support codec. Please download and watch.</h4></center>
     </footer>
 
-    <script src="https://cdn.fluidplayer.com/v3/current/fluidplayer.min.js"></script>
+    <!-- Include JW Player Library -->
+    <script src="https://content.jwplatform.com/libraries/SAHhwvZq.js"></script> <!-- Replace with your JW Player library key -->
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            fluidPlayer('video-player', {
-                layoutControls: {
-                    controlBar: {
-                        autoHideTimeout: 3,
-                        autoHide: true,
-                        animated: true
-                    },
-                    playButtonShowing: true,
-                    mute: true,
-                    volumeControl: true,
-                    playbackRate: true,
-                    subtitlesButton: true,
-                    fullscreen: {
-                        enabled: true,
-                        nativeFullscreen: true
-                    },
-                    controlForwardBackward: {
-                        show: true,
-                        seconds: 10
-                    },
-                    layout: 'default'
-                },
-                vastOptions: {
-                    adList: [{
-                        roll: 'preRoll',
-                        vastTag: 'https://vast.yomeno.xyz/vast?spot_id=1409625' // Replace with your VAST tag URL
-                    }]
+            jwplayer("video-player").setup({
+                file: "%s", // Your video file URL
+                image: "https://i.ibb.co/M8S0Zzj/live-streaming.png", // Thumbnail image
+                width: "100%",
+                aspectratio: "16:9",
+                controls: true,
+                autostart: false,
+                mute: false,
+                advertising: {
+                    client: "vast",
+                    tag: "https://vast.yomeno.xyz/vast?spot_id=1409625" // Replace with your VAST tag URL
                 }
             });
         });
