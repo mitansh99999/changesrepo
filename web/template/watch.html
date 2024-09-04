@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>%s</title>
-    <link rel="stylesheet" type='text/css' href="https://drive----google.com/uc?export=view&id=1pVLG4gZy7jdow3sO-wFS06aP_A9QX0O6">
+    <link rel="stylesheet" href="https://vjs.zencdn.net/7.21.0/video-js.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Delius">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -77,7 +77,9 @@
     </header>
 
     <div class="container">
-        <div id="video-player"></div> <!-- JW Player requires a div for initialization -->
+        <video id="video-player" class="video-js vjs-default-skin" controls preload="auto" width="100%" height="auto" poster="https://i.ibb.co/M8S0Zzj/live-streaming.png" data-setup='{}'>
+            <source src="%s" type="video/mp4">
+        </video>
     </div>
 
     <!-- Adsterra Banner Ad Integration -->
@@ -98,23 +100,17 @@
         <center><h4>Video not playing? Possibly because your browser or the player doesn't support codec. Please download and watch.</h4></center>
     </footer>
 
-    <!-- Include JW Player Library -->
-    <script src="https://content.jwplatform.com/libraries/SAHhwvZq.js"></script> <!-- Replace with your JW Player library key -->
+    <!-- Include Video.js and VAST Plugin -->
+    <script src="https://vjs.zencdn.net/7.21.0/video.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/videojs-vast-vpaid@2.0.2/dist/videojs-vast-vpaid.min.js"></script>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            jwplayer("video-player").setup({
-                file: "%s", // Your video file URL
-                image: "https://i.ibb.co/M8S0Zzj/live-streaming.png", // Thumbnail image
-                width: "100%",
-                aspectratio: "16:9",
-                controls: true,
-                autostart: false,
-                mute: false,
-                advertising: {
-                    client: "vast",
-                    tag: "https://vast.yomeno.xyz/vast?spot_id=1409625" // Replace with your VAST tag URL
-                }
+            var player = videojs('video-player');
+            player.vastClient({
+                adTagUrl: 'URL_TO_VAST_TAG', // Replace with your VAST tag URL
+                playAdAlways: true,
+                verbosity: 0
             });
         });
     </script>
