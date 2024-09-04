@@ -9,11 +9,11 @@
     <link rel="stylesheet" type='text/css' href="https://drive----google.com/uc?export=view&id=1pVLG4gZy7jdow3sO-wFS06aP_A9QX0O6">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Delius">
-    <link rel="stylesheet" href="https://cdn.plyr.io/3.6.9/plyr.css" />
+    <link rel="stylesheet" href="https://cdn.fluidplayer.com/v3/current/fluidplayer.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <style>
-      marquee{
+      marquee {
           font-size: 30px;
           font-weight: 800;
           color: Black;
@@ -32,7 +32,6 @@
           margin: 0;
           color: White;
       }
-
       header p {
           font-size: 1rem;
           margin: 5px 0;
@@ -42,7 +41,7 @@
           position: absolute;
           top: 20px;
           left: 20px;
-          background-color: #00000;
+          background-color: #000000;
           border: none;
           color: white;
           padding: 10px 20px;
@@ -53,19 +52,15 @@
           display: flex;
           align-items: center;
       }
-
       .home-button i {
           margin-right: 8px;
       }
-
       .home-button:hover {
           background-color: #000000;
       }
-
       .container {
           padding: 20px;
       }
-
     </style>
 </head>
 
@@ -83,7 +78,7 @@
     </header>
 
     <div class="container">
-        <video id="video-player" class="player" controls>
+        <video id="video-player" controls data-fluid-player>
             <source src="%s" type="video/mp4">
             Your browser does not support the video tag.
         </video>
@@ -107,33 +102,39 @@
         <center><h4>Video not playing? Possibly because your browser or the player doesn't support codec. Please download and watch.</h4></center>
     </footer>
 
-    <script src="https://cdn.plyr.io/3.6.9/plyr.js"></script>
+    <script src="https://cdn.fluidplayer.com/v3/current/fluidplayer.min.js"></script>
     <script>
-        const controls = [
-            'play-large',
-            'rewind',
-            'play', 
-            'fast-forward', 
-            'progress', 
-            'current-time',
-            'duration',
-            'mute',
-            'volume',
-            'captions',
-            'settings',
-            'pip',
-            'airplay',
-            'download',
-            'fullscreen'
-        ];
-
         document.addEventListener('DOMContentLoaded', () => {
-            const player = Plyr.setup('.player', { controls });
+            fluidPlayer('video-player', {
+                layoutControls: {
+                    controlBar: {
+                        autoHideTimeout: 3,
+                        autoHide: true,
+                        animated: true
+                    },
+                    playButtonShowing: true,
+                    mute: true,
+                    volumeControl: true,
+                    playbackRate: true,
+                    subtitlesButton: true,
+                    fullscreen: {
+                        enabled: true,
+                        nativeFullscreen: true
+                    },
+                    controlForwardBackward: {
+                        show: true,
+                        seconds: 10
+                    },
+                    layout: 'default'
+                },
+                vastOptions: {
+                    adList: [{
+                        roll: 'preRoll',
+                        vastTag: 'https://vast.yomeno.xyz/vast?spot_id=1409625' // Replace with your VAST tag URL
+                    }]
+                }
+            });
         });
-
-        const body = document.querySelector('body');
-        const footer = document.querySelector('footer');
-        const toogle = document.querySelector('.toogle');
     </script>
 
     <script type='text/javascript' src='//pl24251323.cpmrevenuegate.com/eb/89/c8/eb89c85ae5649474a7c717e1653a031b.js'></script>
