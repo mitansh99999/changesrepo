@@ -9,9 +9,6 @@ from aiohttp import web
 from web.utils.custom_dl import TGCustomYield, chunk_size, offset_fix
 from web.utils.render_template import media_watch
 from urllib.parse import quote_plus
-import logging
-
-logging.basicConfig(level=logging.INFO)
 
 routes = web.RouteTableDef()
 
@@ -83,13 +80,8 @@ async def root_route_handler(request):
 async def watch_handler(request):
     try:
         message_id = int(request.match_info['message_id'])
-        response_text = await media_watch(message_id)
-        return web.Response(text=response_text, content_type='text/html')
-    except ValueError:
-        logging.error("Invalid message_id: must be an integer")
-        return web.Response(text="<h1>Invalid message ID: must be an integer</h1>", content_type='text/html')
-    except Exception as e:
-        logging.exception("An error occurred while processing the request")
+        return web.Response(text=await media_watch(message_id), content_type='text/html')
+    except:
         return web.Response(text="<h1>Something went wrong</h1>", content_type='text/html')
 
 @routes.get("/download/{message_id}")
