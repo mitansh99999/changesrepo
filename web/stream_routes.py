@@ -82,17 +82,13 @@ async def root_route_handler(request):
 @routes.get("/watch/{message_id}")
 async def watch_handler(request):
     try:
-        # Attempt to parse the message ID
         message_id = int(request.match_info['message_id'])
-        # Call your media_watch function
         response_text = await media_watch(message_id)
         return web.Response(text=response_text, content_type='text/html')
     except ValueError:
-        # Log and handle the case where message_id is not an integer
         logging.error("Invalid message_id: must be an integer")
-        return web.Response(text="<h1>Invalid message ID</h1>", content_type='text/html')
+        return web.Response(text="<h1>Invalid message ID: must be an integer</h1>", content_type='text/html')
     except Exception as e:
-        # Log any other exceptions for further investigation
         logging.exception("An error occurred while processing the request")
         return web.Response(text="<h1>Something went wrong</h1>", content_type='text/html')
 
