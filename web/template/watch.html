@@ -9,7 +9,7 @@
     <link rel="stylesheet" type='text/css' href="https://drive----google.com/uc?export=view&id=1pVLG4gZy7jdow3sO-wFS06aP_A9QX0O6">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Delius">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/openplayerjs@latest/dist/openplayer.min.css">
+    <link rel="stylesheet" href="https://cdn.fluidplayer.com/v3/current/fluidplayer.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <style>
@@ -62,6 +62,7 @@
           padding: 20px;
       }
     </style>
+    <script async src="https://js.wpadmngr.com/static/adManager.js" data-admpid="223831"></script>
 </head>
 
 <body>
@@ -78,7 +79,7 @@
     </header>
 
     <div class="container">
-        <video id="video-player" controls width="100%" height="auto" poster="https://i.ibb.co/M8S0Zzj/live-streaming.png">
+        <video id="video-player" controls data-fluid-player>
             <source src="%s" type="video/mp4">
             Your browser does not support the video tag.
         </video>
@@ -102,15 +103,38 @@
         <center><h4>Video not playing? Possibly because your browser or the player doesn't support codec. Please download and watch.</h4></center>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/openplayerjs@latest/dist/openplayer.min.js"></script>
+    <script src="https://cdn.fluidplayer.com/v3/current/fluidplayer.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const player = new OpenPlayer('video-player', {
-                ads: {
-                    src: 'https://vast.yomeno.xyz/vast?spot_id=1409625' // Replace with your VAST tag URL
+            fluidPlayer('video-player', {
+                layoutControls: {
+                    controlBar: {
+                        autoHideTimeout: 3,
+                        autoHide: true,
+                        animated: true
+                    },
+                    playButtonShowing: true,
+                    mute: true,
+                    volumeControl: true,
+                    playbackRate: true,
+                    subtitlesButton: true,
+                    fullscreen: {
+                        enabled: true,
+                        nativeFullscreen: true
+                    },
+                    controlForwardBackward: {
+                        show: true,
+                        seconds: 10
+                    },
+                    layout: 'default'
+                },
+                vastOptions: {
+                    adList: [{
+                        roll: 'preRoll',
+                        vastTag: 'https://vast.yomeno.xyz/vast?spot_id=1409625' // Replace with your VAST tag URL
+                    }]
                 }
             });
-            player.init();
         });
     </script>
 
