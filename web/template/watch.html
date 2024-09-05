@@ -6,12 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>%s</title>
-    <link rel="stylesheet" href="https://drive----google.com/uc?export=view&id=1pVLG4gZy7jdow3sO-wFS06aP_A9QX0O6">
+    <!-- OpenPlayerJS CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/openplayerjs@latest/dist/openplayer.min.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Delius">
-    <link rel="stylesheet" href="https://vjs.zencdn.net/7.11.4/video-js.css" />
-    
+
     <style>
+        /* Custom styles */
         marquee {
             font-size: 30px;
             font-weight: 800;
@@ -60,13 +61,6 @@
         .container {
             padding: 20px;
         }
-        /* Video.js specific styling */
-        .video-js .vjs-big-play-button {
-            width: 70px;
-            height: 70px;
-            line-height: 70px;
-            font-size: 25px;
-        }
     </style>
 </head>
 
@@ -84,49 +78,82 @@
     </header>
 
     <div class="container">
-        <!-- Video.js player -->
-        <video id="my-video" class="video-js" controls preload="auto" width="640" height="264">
-            <source src="%s" type="video/mp4" />
+        <!-- OpenPlayerJS Video -->
+        <video class="op-player__media" id="player" controls playsinline>
+            <source src="test.mp4" type="video/mp4" />
+            <track kind="subtitles" src="path/to/subtitles.vtt" srclang="en" label="English" />
         </video>
     </div>
 
-    <!-- Adsterra Banner Ad Integration -->
-    <div class="ad-container" style="margin: 20px 0; text-align: center;">
-        <script type="text/javascript">
-            atOptions = {
-                'key' : '3980ae2f35e1b4bd87dcc80fea1be8cd',
-                'format' : 'iframe',
-                'height' : 60,
-                'width' : 468,
-                'params' : {}
-            };
-        </script>
-        <script type="text/javascript" src="//www.topcreativeformat.com/3980ae2f35e1b4bd87dcc80fea1be8cd/invoke.js"></script>
-    </div>
-    <!-- Adsterra Banner Ad Integration -->
-    <div class="ads-container" style="margin: 20px 0; text-align: center;">
-        <script type="text/javascript">
-            atOptions = {
-                'key' : '3980ae2f35e1b4bd87dcc80fea1be8cd',
-                'format' : 'iframe',
-                'height' : 60,
-                'width' : 468,
-                'params' : {}
-            };
-        </script>
-        <script type="text/javascript" src="//www.topcreativeformat.com/3980ae2f35e1b4bd87dcc80fea1be8cd/invoke.js"></script>
-    </div>
-
     <footer>
-        <center><h4>Video not playing? Possibly because your browser or the player doesn't support codec. Please download and watch.</h4></center>
+        <!-- Footer content if needed -->
     </footer>
-    
-    <script src="https://vjs.zencdn.net/7.11.4/video.min.js"></script>
+
+    <!-- OpenPlayerJS JS -->
+    <script src="https://cdn.jsdelivr.net/npm/openplayerjs@latest/dist/openplayer.min.js"></script>
     <script>
-        // No special initialization needed for basic Video.js setup
+        // Initialize OpenPlayerJS with VAST ads support
+        const player = new OpenPlayerJS('player', {
+            ads: {
+                src: 'https://vast.yomeno.xyz/vast?spot_id=1409625', // Replace with your VAST ad tag URL
+                autoPlayAdBreaks: true,
+                debug: true,
+                enablePreloading: true,
+                language: 'en',
+                loop: false,
+                numRedirects: 4,
+                sdkPath: 'https://imasdk.googleapis.com/js/sdkloader/ima3.js', // Google IMA SDK path
+                customClick: {
+                    enabled: false,
+                    label: '',
+                },
+                sessionId: null,
+                vpaidMode: 'enabled',
+                publisherId: null,
+            },
+            controls: {
+                alwaysVisible: false,
+                layers: {
+                    left: ['play', 'time', 'volume'],
+                    middle: ['progress'],
+                    right: ['captions', 'settings', 'fullscreen'],
+                }
+            },
+            detachMenus: false,
+            forceNative: true,
+            mode: 'responsive',
+            hidePlayBtnTimer: 350,
+            step: 0,
+            startVolume: 1,
+            startTime: 0,
+            showLoaderOnInit: false,
+            onError: (e) => console.error(e),
+            defaultLevel: null,
+            live: {
+                showLabel: true,
+                showProgress: false,
+            },
+            dash: {
+                robustnessLevel: null,
+                drm: null,
+            },
+            flv: {
+                // FLV options if using FLV.js
+            },
+            hls: {
+                // HLS options if using HLS.js
+            },
+            progress: {
+                duration: 0,
+                showCurrentTimeOnly: false
+            },
+            width: 0,
+            height: 0,
+            pauseOthers: true
+        });
+
+        // Don't forget to start the player
+        player.init();
     </script>
-    
-    <script async="async" data-cfasync="false" src="//pl17299233.cpmrevenuegate.com/2f2748a50a427e702b662c40fd2d5b9f/invoke.js"></script>
-    <div id="container-2f2748a50a427e702b662c40fd2d5b9f"></div>
 </body>
 </html>
