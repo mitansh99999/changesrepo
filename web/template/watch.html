@@ -6,70 +6,71 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>%s</title>
-    <link rel="stylesheet" type='text/css' href="https://drive----google.com/uc?export=view&id=1pVLG4gZy7jdow3sO-wFS06aP_A9QX0O6">
+    <link rel="stylesheet" href="https://drive----google.com/uc?export=view&id=1pVLG4gZy7jdow3sO-wFS06aP_A9QX0O6">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Delius">
-    <link rel="stylesheet" href="https://cdn.plyr.io/3.6.9/plyr.css" />
-
-
-<style>
-      marquee {
-          font-size: 30px;
-          font-weight: 800;
-          color: Black;
-          font-family: sans-serif;
-          border-radius: 10px;
-      }
-      header {
-          background-color: #000000;
-          padding: 20px;
-          text-align: center;
-          border-bottom: 2px solid #ccc;
-      }
-      header h1 {
-          font-family: 'Delius', cursive;
-          font-size: 2.5rem;
-          margin: 0;
-          color: White;
-      }
-
-      header p {
-          font-size: 1rem;
-          margin: 5px 0;
-          color: #666;
-      }
-      .home-button {
-          position: absolute;
-          top: 20px;
-          left: 20px;
-          background-color: #00000;
-          border: none;
-          color: white;
-          padding: 10px 20px;
-          text-decoration: none;
-          font-size: 16px;
-          border-radius: 5px;
-          cursor: pointer;
-          display: flex;
-          align-items: center;
-      }
-
-      .home-button i {
-          margin-right: 8px;
-      }
-
-      .home-button:hover {
-          background-color: #000000;
-      }
-
-      .container {
-          padding: 20px;
-      }
+    <link rel="stylesheet" href="https://vjs.zencdn.net/7.11.4/video-js.css" />
+    
+    <style>
+        marquee {
+            font-size: 30px;
+            font-weight: 800;
+            color: Black;
+            font-family: sans-serif;
+            border-radius: 10px;
+        }
+        header {
+            background-color: #000000;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 2px solid #ccc;
+        }
+        header h1 {
+            font-family: 'Delius', cursive;
+            font-size: 2.5rem;
+            margin: 0;
+            color: White;
+        }
+        header p {
+            font-size: 1rem;
+            margin: 5px 0;
+            color: #666;
+        }
+        .home-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: #00000;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+        .home-button i {
+            margin-right: 8px;
+        }
+        .home-button:hover {
+            background-color: #000000;
+        }
+        .container {
+            padding: 20px;
+        }
+        /* Video.js specific styling */
+        .video-js .vjs-big-play-button {
+            width: 70px;
+            height: 70px;
+            line-height: 70px;
+            font-size: 25px;
+        }
     </style>
 </head>
 
 <body>
-	
     <header>
         <a href="/" class="home-button"><i class="fas fa-home"></i></a>
         <h1>Welcome ! !</h1>
@@ -83,10 +84,13 @@
     </header>
 
     <div class="container">
-        <tag src="%s" class="player"></tag>
+        <!-- Video.js player -->
+        <video id="my-video" class="video-js" controls preload="auto" width="640" height="264">
+            <source src="%s" type="video/mp4" />
+        </video>
     </div>
 
-        <!-- Adsterra Banner Ad Integration -->
+    <!-- Adsterra Banner Ad Integration -->
     <div class="ad-container" style="margin: 20px 0; text-align: center;">
         <script type="text/javascript">
             atOptions = {
@@ -99,7 +103,7 @@
         </script>
         <script type="text/javascript" src="//www.topcreativeformat.com/3980ae2f35e1b4bd87dcc80fea1be8cd/invoke.js"></script>
     </div>
-        <!-- Adsterra Banner Ad Integration -->
+    <!-- Adsterra Banner Ad Integration -->
     <div class="ads-container" style="margin: 20px 0; text-align: center;">
         <script type="text/javascript">
             atOptions = {
@@ -114,37 +118,15 @@
     </div>
 
     <footer>
-	    <center><h4>Video not playing? Possibly because your browser or the player doesn't support codec. Please download and watch.</h4></center>
-	    
+        <center><h4>Video not playing? Possibly because your browser or the player doesn't support codec. Please download and watch.</h4></center>
     </footer>
-    <script src="https://cdn.plyr.io/3.6.9/plyr.js"></script>
-	<script>
-        const controls = [
-              'play-large',
-              'rewind',
-              'play', 
-              'fast-forward', 
-              'progress', 
-              'current-time',
-              'duration',
-              'mute',
-              'volume',
-              'captions',
-              'settings',
-              'pip',
-              'airplay',
-              'download',
-              'fullscreen'
-            ];
-        document.addEventListener('DOMContentLoaded', () => {
-            const player = Plyr.setup('.player', { controls });
-        });
-
-        const body = document.querySelector('body');
-        const footer = document.querySelector('footer');
-        const toogle = document.querySelector('.toogle');
+    
+    <script src="https://vjs.zencdn.net/7.11.4/video.min.js"></script>
+    <script>
+        // No special initialization needed for basic Video.js setup
     </script>
+    
     <script async="async" data-cfasync="false" src="//pl17299233.cpmrevenuegate.com/2f2748a50a427e702b662c40fd2d5b9f/invoke.js"></script>
-<div id="container-2f2748a50a427e702b662c40fd2d5b9f"></div>
+    <div id="container-2f2748a50a427e702b662c40fd2d5b9f"></div>
 </body>
 </html>
