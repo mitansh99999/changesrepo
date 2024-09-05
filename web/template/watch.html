@@ -6,11 +6,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>%s</title>
-    <link rel="stylesheet" href="https://drive----google.com/uc?export=view&id=1pVLG4gZy7jdow3sO-wFS06aP_A9QX0O6">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Delius">
-    <link rel="stylesheet" href="https://vjs.zencdn.net/8.17.3/video-js.min.css" />
     
+    <!-- video.js framework -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/video.js/8.6.1/video-js.min.css" rel="stylesheet">
+    
+    <!-- Ads plugin for video.js -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/videojs-contrib-ads/7.3.2/videojs.ads.css" rel="stylesheet">
+    
+    <!-- This plugin for video.js -->
+    <link href="https://cdn.jsdelivr.net/npm/videojsx-vast-plugin@latest/dist/videojsx.vast.css" rel="stylesheet">
+    
+    <!-- Video.js scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/video.js/8.6.1/video.min.js"></script>
+    
+    <!-- Ads plugin for video.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/videojs-contrib-ads/7.3.2/videojs.ads.min.js"></script>
+    
+    <!-- This plugin for video.js -->
+    <script src="https://cdn.jsdelivr.net/npm/videojsx-vast-plugin@latest/dist/videojsx.vast.js"></script>
+
     <style>
         marquee {
             font-size: 30px;
@@ -61,7 +75,6 @@
             padding: 20px;
             text-align: center;
         }
-        /* Responsive Video.js player */
         .video-container {
             position: relative;
             padding-bottom: 56.25%; /* 16:9 aspect ratio */
@@ -77,7 +90,6 @@
             width: 100%;
             height: 100%;
         }
-        /* Video.js specific styling */
         .video-js .vjs-big-play-button {
             width: 70px;
             height: 70px;
@@ -103,10 +115,12 @@
     <div class="container">
         <!-- Responsive Video.js player -->
         <div class="video-container">
-            <video id="my-video" class="video-js vjs-default-skin" controls preload="auto">
-                <source src="%s" type="video/mp4" />
+            <video id="vid1" class="video-js vjs-default-skin" controls preload="auto" poster="your-poster.jpg">
+                <source id="mysrc" src="test.mp4" type="video/mp4" />
+                Your browser does not support video.
             </video>
         </div>
+        <div id="companion"></div>
     </div>
 
     <!-- Adsterra Banner Ad Integration -->
@@ -140,27 +154,19 @@
         <center><h4>Video not playing? Possibly because your browser or the player doesn't support codec. Please download and watch.</h4></center>
     </footer>
     
-    <!-- Include Video.js library -->
-    <script src="https://vjs.zencdn.net/8.17.3/video.min.j"></script>
-    
-    <!-- Include Video.js VAST Plugin -->
-    <link href="https://cdn.jsdelivr.net/npm/videojs-contrib-ads@6.0.0/dist/videojs.ads.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/videojs-contrib-ads@6.0.0/dist/videojs.ads.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/videojs-contrib-ima@4.0.0/dist/videojs.ima.min.js"></script>
-    
     <script>
-        const player = videojs('my-video', {
-            plugins: {
-                ima: {
-                    id: 'my-video',
-                    adTagUrl: 'https://vast.yomeno.xyz/vast?spot_id=1409625' // Your VAST URL
-                },
-                ads: {}
-            }
-        });
+        var player = videojs('vid1');
 
-        player.ima({
-            adTagUrl: 'https://vast.yomeno.xyz/vast?spot_id=1409625' // Your VAST URL
+        var companion = {
+            elementId: "companion",
+            maxWidth: 300,
+            maxHeight: 250
+        };
+
+        player.vast({
+            url: 'https://vast.yomeno.xyz/vast?spot_id=1409625',
+            skip: 8,
+            companion: companion
         });
     </script>
     
