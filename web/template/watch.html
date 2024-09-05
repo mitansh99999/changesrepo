@@ -6,8 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>%s</title>
-    <!-- OpenPlayerJS CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/openplayerjs@latest/dist/openplayer.min.css" />
+    <!-- JW Player CSS (if needed) -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Delius">
 
@@ -41,7 +40,7 @@
             position: absolute;
             top: 20px;
             left: 20px;
-            background-color: #00000;
+            background-color: #000000;
             border: none;
             color: white;
             padding: 10px 20px;
@@ -61,6 +60,15 @@
         .container {
             padding: 20px;
         }
+        .language-switcher {
+            margin: 20px;
+            text-align: center;
+        }
+        .language-switcher select {
+            font-size: 16px;
+            padding: 10px;
+            border-radius: 5px;
+        }
     </style>
 </head>
 
@@ -78,81 +86,34 @@
     </header>
 
     <div class="container">
-        <!-- OpenPlayerJS Video -->
-        <video class="op-player__media" id="player" controls playsinline muted>
-            <source src="%s" type="video/mp4" />
-        </video>
+        <!-- JW Player -->
+        <div id="my-player"></div>
     </div>
 
     <footer>
         <!-- Footer content if needed -->
     </footer>
 
-    <!-- OpenPlayerJS JS -->
-    <script src="https://cdn.jsdelivr.net/npm/openplayerjs@latest/dist/openplayer.min.js"></script>
+    <!-- JW Player Script -->
+    <script src="jwplayer.js"></script>
     <script>
-        // Initialize OpenPlayerJS with VAST ads support
-        const player = new OpenPlayerJS('player', {
-            ads: {
-                src: 'https://vast.yomeno.xyz/vast?spot_id=1409625', // Replace with your VAST ad tag URL
-                autoPlayAdBreaks: true,
-                debug: true,
-                enablePreloading: true,
-                language: 'en',
-                loop: false,
-                numRedirects: 4,
-                sdkPath: 'https://imasdk.googleapis.com/js/sdkloader/ima3.js', // Google IMA SDK path
-                customClick: {
-                    enabled: false,
-                    label: '',
-                },
-                sessionId: null,
-                vpaidMode: 'enabled',
-                publisherId: null,
-            },
-            controls: {
-                alwaysVisible: false,
-                layers: {
-                    left: ['play', 'time', 'volume'],
-                    middle: ['progress'],
-                    right: ['settings', 'fullscreen'],
-                }
-            },
-            detachMenus: false,
-            forceNative: true,
-            mode: 'responsive',
-            hidePlayBtnTimer: 350,
-            step: 0,
-            startVolume: 1,
-            startTime: 0,
-            showLoaderOnInit: false,
-            onError: (e) => console.error(e),
-            defaultLevel: null,
-            live: {
-                showLabel: true,
-                showProgress: false,
-            },
-            dash: {
-                robustnessLevel: null,
-                drm: null,
-            },
-            flv: {
-                // FLV options if using FLV.js
-            },
-            hls: {
-                // HLS options if using HLS.js
-            },
-            progress: {
-                duration: 0,
-                showCurrentTimeOnly: false
-            },
-            width: 0,
-            height: 0,
-            pauseOthers: true
+        // Initialize JW Player
+        jwplayer("my-player").setup({
+            file: "%s",  // Replace with your video URL
+            image: "https://i.ibb.co/M8S0Zzj/live-streaming.png",  // Optional: Replace with your thumbnail image URL
+            width: "100%",
+            aspectratio: "16:9",
+            autostart: false,  // Set to true if you want the video to start playing automatically
+            controls: true,    // Show video controls
+            mute: false,       // Set to true if you want the video to start muted
+            advertising: {
+                client: "vast",
+                tag: "https://vast.yomeno.xyz/vast?spot_id=1409625",  // Replace with your VAST ad tag URL
+                admessage: "Advertisement",
+                skipoffset: "00:00:05",  // Optionally set a skip offset
+                // Add more ad options as needed
+            }
         });
-
-        // Don't forget to start the player
-        player.init();
     </script>
 </body>
 </html>
