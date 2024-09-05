@@ -5,11 +5,11 @@
     <meta property="og:image" content="https://i.ibb.co/M8S0Zzj/live-streaming.png" itemprop="thumbnailUrl">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>%s</title>
-    <!-- JW Player CSS (if needed) -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Delius">
-
+    <title>Video.js with VAST Ads</title>
+    <!-- Video.js CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/video.js@8.17.3/dist/video-js.min.css">
+    <!-- Custom CSS -->
+    <link href="https://mitansh99999.github.io/js-and-css/videojsx.vast.css" rel="stylesheet">
     <style>
         /* Custom styles */
         marquee {
@@ -60,14 +60,10 @@
         .container {
             padding: 20px;
         }
-        .language-switcher {
-            margin: 20px;
-            text-align: center;
-        }
-        .language-switcher select {
-            font-size: 16px;
-            padding: 10px;
-            border-radius: 5px;
+        #companion {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
         }
     </style>
 </head>
@@ -80,39 +76,61 @@
         <marquee bgcolor="#f7f305">
             <div class="toogle"></div>
             <div id="file-name">
-                %s
+                Your Video Title
             </div>
         </marquee>
     </header>
 
     <div class="container">
-        <!-- JW Player -->
-        <div id="my-player"></div>
+        <!-- Video.js -->
+        <video id="videoPlayer" class="video-js vjs-default-skin" controls preload="auto" width="640" height="400" poster="https://i.ibb.co/M8S0Zzj/live-streaming.png">
+            <source src="test.mp4" type="video/mp4">
+            Your browser does not support video.
+        </video>
+        <div id="companion"></div>
     </div>
 
     <footer>
         <!-- Footer content if needed -->
     </footer>
 
-    <!-- JW Player Script -->
-    <script src="jwplayer.js"></script>
+    <!-- Video.js Script -->
+    <script src="https://cdn.jsdelivr.net/npm/video.js@8.17.3/dist/video.min.js"></script>
+    <!-- Video.js VAST Plugin -->
+    <script src="https://mitansh99999.github.io/js-and-css/videojsx.vast.js"></script>
+
     <script>
-        // Initialize JW Player
-        jwplayer("my-player").setup({
-            file: "%s",  // Replace with your video URL
-            image: "https://i.ibb.co/M8S0Zzj/live-streaming.png",  // Optional: Replace with your thumbnail image URL
-            width: "100%",
-            aspectratio: "16:9",
-            autostart: false,  // Set to true if you want the video to start playing automatically
-            controls: true,    // Show video controls
-            mute: false,       // Set to true if you want the video to start muted
-            advertising: {
-                client: "vast",
-                tag: "https://vast.yomeno.xyz/vast?spot_id=1409625",  // Replace with your VAST ad tag URL
-                admessage: "Advertisement",
-                skipoffset: "00:00:05",  // Optionally set a skip offset
-                // Add more ad options as needed
-            }
+        var player = videojs('videoPlayer', {
+            controls: true,
+            autoplay: false,
+            preload: 'auto'
+        });
+
+        var companion = {
+            elementId: "companion",
+            maxWidth: 300,
+            maxHeight: 250
+        };
+
+        // Initialize VAST plugin
+        player.vast({
+            url: 'https://vast.yomeno.xyz/vast?spot_id=1409625', // Replace with your VAST URL
+            skip: 8, // Skip button timeout in seconds
+            companion: companion
+        });
+
+        // Handle VAST ad events
+        player.on('adstart', function() {
+            console.log('Ad started');
+        });
+
+        player.on('adend', function() {
+            console.log('Ad finished');
+            player.play(); // Resume playing the main content
+        });
+
+        player.on('aderror', function() {
+            console.error('Error loading VAST ad');
         });
     </script>
 </body>
