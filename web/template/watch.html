@@ -5,13 +5,21 @@
     <meta property="og:image" content="https://i.ibb.co/M8S0Zzj/live-streaming.png" itemprop="thumbnailUrl">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Video.js with VAST Ads</title>
-    <!-- Video.js CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/video.js@8.17.3/dist/video-js.min.css">
-    <!-- Custom CSS -->
-    <link href="https://mitansh99999.github.io/js-and-css/videojsx.vast.css" rel="stylesheet">
+    <title>%s</title>
+    <!-- OpenPlayerJS CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/openplayerjs@latest/dist/openplayer.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Delius">
+
     <style>
         /* Custom styles */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden; /* Prevents unwanted scrolling */
+        }
+
         marquee {
             font-size: 30px;
             font-weight: 800;
@@ -19,23 +27,27 @@
             font-family: sans-serif;
             border-radius: 10px;
         }
+
         header {
             background-color: #000000;
             padding: 20px;
             text-align: center;
             border-bottom: 2px solid #ccc;
         }
+
         header h1 {
             font-family: 'Delius', cursive;
             font-size: 2.5rem;
             margin: 0;
             color: White;
         }
+
         header p {
             font-size: 1rem;
             margin: 5px 0;
             color: #666;
         }
+
         .home-button {
             position: absolute;
             top: 20px;
@@ -51,19 +63,22 @@
             display: flex;
             align-items: center;
         }
+
         .home-button i {
             margin-right: 8px;
         }
+
         .home-button:hover {
             background-color: #000000;
         }
+
         .container {
             padding: 20px;
         }
-        #companion {
-            position: absolute;
-            bottom: 10px;
-            right: 10px;
+
+        #player {
+            width: 100%;
+            height: 100vh; /* Full viewport height */
         }
     </style>
 </head>
@@ -76,62 +91,92 @@
         <marquee bgcolor="#f7f305">
             <div class="toogle"></div>
             <div id="file-name">
-                Your Video Title
+                %s
             </div>
         </marquee>
     </header>
 
     <div class="container">
-        <!-- Video.js -->
-        <video id="videoPlayer" class="video-js vjs-default-skin" controls preload="auto" width="640" height="400" poster="https://i.ibb.co/M8S0Zzj/live-streaming.png">
-            <source src="test.mp4" type="video/mp4">
-            Your browser does not support video.
+        <!-- OpenPlayerJS Video -->
+        <video class="op-player__media" id="player" controls playsinline muted>
+            <source src="%s" type="video/mp4" />
         </video>
-        <div id="companion"></div>
     </div>
 
     <footer>
         <!-- Footer content if needed -->
     </footer>
 
-    <!-- Video.js Script -->
-    <script src="https://cdn.jsdelivr.net/npm/video.js@8.17.3/dist/video.min.js"></script>
-    <!-- Video.js VAST Plugin -->
-    <script src="https://mitansh99999.github.io/js-and-css/videojsx.vast.js"></script>
-
+    <!-- OpenPlayerJS JS -->
+    <script src="https://cdn.jsdelivr.net/npm/openplayerjs@latest/dist/openplayer.min.js"></script>
     <script>
-        var player = videojs('videoPlayer', {
-            controls: true,
-            autoplay: false,
-            preload: 'auto'
+        // Initialize OpenPlayerJS with VAST ads support
+        const player = new OpenPlayerJS('player', {
+            ads: {
+                src: 'https://vast.yomeno.xyz/vast?spot_id=1409625', // Replace with your VAST ad tag URL
+                autoPlayAdBreaks: true,
+                debug: true,
+                enablePreloading: true,
+                language: 'en',
+                loop: false,
+                numRedirects: 4,
+                sdkPath: 'https://imasdk.googleapis.com/js/sdkloader/ima3.js', // Google IMA SDK path
+                customClick: {
+                    enabled: false,
+                    label: '',
+                },
+                sessionId: null,
+                vpaidMode: 'enabled',
+                publisherId: null,
+            },
+            controls: {
+                alwaysVisible: false,
+                layers: {
+                    left: ['play', 'time', 'volume'],
+                    middle: ['progress'],
+                    right: ['settings', 'fullscreen'],
+                }
+            },
+            mode: 'responsive', // Ensure responsive mode is on
+            hidePlayBtnTimer: 350,
+            startVolume: 1,
+            startTime: 0,
+            live: {
+                showLabel: true,
+                showProgress: false,
+            },
+            pauseOthers: true
         });
 
-        var companion = {
-            elementId: "companion",
-            maxWidth: 300,
-            maxHeight: 250
-        };
-
-        // Initialize VAST plugin
-        player.vast({
-            url: 'https://vast.yomeno.xyz/vast?spot_id=1409625', // Replace with your VAST URL
-            skip: 8, // Skip button timeout in seconds
-            companion: companion
+        // Handle fullscreen toggle for mobile
+        document.getElementById('player').addEventListener('click', function() {
+            if (document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement) {
+                // Exit fullscreen mode
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.webkitExitFullscreen) {
+                    document.webkitExitFullscreen();
+                } else if (document.mozCancelFullScreen) {
+                    document.mozCancelFullScreen();
+                } else if (document.msExitFullscreen) {
+                    document.msExitFullscreen();
+                }
+            } else {
+                // Enter fullscreen mode
+                if (this.requestFullscreen) {
+                    this.requestFullscreen();
+                } else if (this.webkitRequestFullscreen) {
+                    this.webkitRequestFullscreen();
+                } else if (this.mozRequestFullScreen) {
+                    this.mozRequestFullScreen();
+                } else if (this.msRequestFullscreen) {
+                    this.msRequestFullscreen();
+                }
+            }
         });
 
-        // Handle VAST ad events
-        player.on('adstart', function() {
-            console.log('Ad started');
-        });
-
-        player.on('adend', function() {
-            console.log('Ad finished');
-            player.play(); // Resume playing the main content
-        });
-
-        player.on('aderror', function() {
-            console.error('Error loading VAST ad');
-        });
+        // Don't forget to start the player
+        player.init();
     </script>
 </body>
 </html>
