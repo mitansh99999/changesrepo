@@ -98,7 +98,7 @@
 
     <div class="container">
         <!-- OpenPlayerJS Video -->
-        <video class="op-player__media" id="player" controls playsinline muted>
+        <video class="op-player__media" id="player" controls playsinline >
             <source src="%s" type="video/mp4" />
         </video>
     </div>
@@ -146,33 +146,6 @@
                 showProgress: false,
             },
             pauseOthers: true
-        });
-
-        // Handle fullscreen toggle for mobile
-        document.getElementById('player').addEventListener('click', function() {
-            if (document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement) {
-                // Exit fullscreen mode
-                if (document.exitFullscreen) {
-                    document.exitFullscreen();
-                } else if (document.webkitExitFullscreen) {
-                    document.webkitExitFullscreen();
-                } else if (document.mozCancelFullScreen) {
-                    document.mozCancelFullScreen();
-                } else if (document.msExitFullscreen) {
-                    document.msExitFullscreen();
-                }
-            } else {
-                // Enter fullscreen mode
-                if (this.requestFullscreen) {
-                    this.requestFullscreen();
-                } else if (this.webkitRequestFullscreen) {
-                    this.webkitRequestFullscreen();
-                } else if (this.mozRequestFullScreen) {
-                    this.mozRequestFullScreen();
-                } else if (this.msRequestFullscreen) {
-                    this.msRequestFullscreen();
-                }
-            }
         });
 
         // Don't forget to start the player
