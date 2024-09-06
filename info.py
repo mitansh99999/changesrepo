@@ -27,7 +27,7 @@ API_HASH = environ.get('API_HASH', '74689cc3a42a7afc507453c94a0cfeb9') #api hash
 if len(API_HASH) == 0:
     print('Error - API_HASH is missing, exiting now')
     exit()
-BOT_TOKEN = environ.get('BOT_TOKEN', '7240556305:AAHB0Od9n1gTkq1PtuFRjA5FpexxfAJyZzM') #bot token from botfather
+BOT_TOKEN = environ.get('BOT_TOKEN', '6131871030:AAH9pz46zImHh-bsgS7MjZOe9CR0f4oUqWY') #bot token from botfather
 if len(BOT_TOKEN) == 0:
     print('Error - BOT_TOKEN is missing, exiting now')
     exit()
@@ -68,7 +68,7 @@ else:
     SUPPORT_GROUP = int(SUPPORT_GROUP)
 
 # MongoDB information
-DATABASE_URL = environ.get('DATABASE_URL', "mongodb+srv://m:m@cluster0.9vcrm.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0") #mongo db url
+DATABASE_URL = environ.get('DATABASE_URL', "mongodb+srv://md:md@cluster0.kznetvq.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0") #mongo db url
 if len(DATABASE_URL) == 0:
     print('Error - DATABASE_URL is missing, exiting now')
     exit()
@@ -112,20 +112,18 @@ IMDB = is_enabled('IMDB', True)
 SPELL_CHECK = is_enabled("SPELL_CHECK", True)
 SHORTLINK = is_enabled('SHORTLINK', False)
 
-RENEW_TEXT = is_enabled('RENEW_TEXT' , True) #True If You Want A renew Message to Be Sent After Expiry of Every Premium Subscription
 PAYMENT_QR = environ.get('PAYMENT_QR', 'https://graph.org/file/32ad91bc956492005d5a8.png') #telegraph link of your QR code 
 UPI_ID = environ.get('UPI_ID', 'deepsatasiya@ibl') # Add your upi id here
 # for stream
-SHOW_ADS = is_enabled('SHOW_ADS' , True) #true if you want to enable ads only for non premium users
 STREAM_PREMIUM = is_enabled('STREAM_PREMIUM' , False) #true if you want stream feature to work only for premium users
-IS_STREAM = is_enabled('IS_STREAM', True) #true if you want stream feature active in your bot
+IS_STREAM = is_enabled('IS_STREAM', False) #true if you want stream feature active in your bot
 BIN_CHANNEL = environ.get("BIN_CHANNEL", "-1001346044919") #if is_stream = true then add a channel id ex: -10026393639
 if len(BIN_CHANNEL) == 0:
     print('Error - BIN_CHANNEL is missing, exiting now')
     exit()
 else:
     BIN_CHANNEL = int(BIN_CHANNEL)
-URL = environ.get("URL", "https://changesrepo.onrender.com/") #if heroku then paste the app link here ex: https://heroku......./
+URL = environ.get("URL", "https://filestore-8n4f.onrender.com/") #if heroku then paste the app link here ex: https://heroku......./
 if len(URL) == 0:
     print('Error - URL is missing, exiting now')
     exit()
