@@ -1,4 +1,4 @@
-from info import BIN_CHANNEL, URL, SHOW_ADS
+from info import BIN_CHANNEL, URL
 from utils import temp
 from web.utils.custom_dl import TGCustomYield
 from database.users_chats_db import db
