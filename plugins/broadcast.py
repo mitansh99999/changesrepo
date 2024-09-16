@@ -56,7 +56,41 @@ async def users_broadcast(bot, message):
                 await b_sts.edit(f"Users broadcast in progress...\n\nTotal Users: <code>{total_users}</code>\nCompleted: <code>{done} / {total_users}</code>\nSuccess: <code>{success}</code>", reply_markup=InlineKeyboardMarkup(btn))
         await b_sts.edit(f"Users broadcast completed.\nCompleted in {time_taken}\n\nTotal Users: <code>{total_users}</code>\nCompleted: <code>{done} / {total_users}</code>\nSuccess: <code>{success}</code>")
 
+@Client.on_message(filters.command(["broadcast_expired"]) & filters.user(ADMINS) & filters.reply)
+async def expired_users_broadcast(bot, message):
+    if lock.locked():
+        return await message.reply('Currently broadcast processing, Wait for complete.')
+    
+    users = await db.get_expired_users()  # Fetch expired users from the database
+    b_msg = message.reply_to_message
+    b_sts = await message.reply_text(text='Broadcasting to expired users...')
+    start_time = time.time()
+    total_expired_users = len(users)  # Count the total expired users
+    done = 0
+    failed = 0
+    success = 0
 
+    async with lock:
+        for user in users:
+            time_taken = get_readable_time(time.time() - start_time)
+            if temp.EXPIRED_CANCEL:
+                temp.EXPIRED_CANCEL = False
+                await b_sts.edit(f"Expired users broadcast Cancelled!\nCompleted in {time_taken}\n\nTotal Expired Users: <code>{total_expired_users}</code>\nCompleted: <code>{done} / {total_expired_users}</code>\nSuccess: <code>{success}</code>")
+                return
+            # Broadcast message to the user
+            sts = await broadcast_messages(int(user['id']), b_msg, pin=False)
+            if sts == 'Success':
+                success += 1
+            elif sts == 'Error':
+                failed += 1
+            done += 1
+            if not done % 20:
+                btn = [[
+                    InlineKeyboardButton('CANCEL', callback_data=f'broadcast_cancel#expired')
+                ]]
+                await b_sts.edit(f"Expired users broadcast in progress...\n\nTotal Expired Users: <code>{total_expired_users}</code>\nCompleted: <code>{done} / {total_expired_users}</code>\nSuccess: <code>{success}</code>", reply_markup=InlineKeyboardMarkup(btn))
+        await b_sts.edit(f"Expired users broadcast completed.\nCompleted in {time_taken}\n\nTotal Expired Users: <code>{total_expired_users}</code>\nCompleted: <code>{done} / {total_expired_users}</code>\nSuccess: <code>{success}</code>")
+              
 @Client.on_message(filters.command(["grp_broadcast", "pin_grp_broadcast"]) & filters.user(ADMINS) & filters.reply)
 async def groups_broadcast(bot, message):
     if lock.locked():
@@ -93,5 +127,3 @@ async def groups_broadcast(bot, message):
                 ]]
                 await b_sts.edit(f"Groups groadcast in progress...\n\nTotal Groups: <code>{total_chats}</code>\nCompleted: <code>{done} / {total_chats}</code>\nSuccess: <code>{success}</code>\nFailed: <code>{failed}</code>", reply_markup=InlineKeyboardMarkup(btn))    
         await b_sts.edit(f"Groups broadcast completed.\nCompleted in {time_taken}\n\nTotal Groups: <code>{total_chats}</code>\nCompleted: <code>{done} / {total_chats}</code>\nSuccess: <code>{success}</code>\nFailed: <code>{failed}</code>")
-
-
