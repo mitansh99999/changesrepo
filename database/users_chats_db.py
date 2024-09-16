@@ -41,6 +41,7 @@ class Database:
         self.col = mydb.Users
         self.grp = mydb.Groups
         self.users = mydb.uersz
+        self.expired_users = mydb.expired_users
         self.bot_client = Client("auto_filter_bot", bot_token=BOT_TOKEN)
 
     def new_user(self, id, name):
@@ -68,6 +69,22 @@ class Database:
     async def add_user(self, id, name):
         user = self.new_user(id, name)
         await self.col.insert_one(user)
+    
+    async def add_expired_user(self, user_id):
+        user = await self.get_user(user_id)
+        if user:
+            await self.expired_users.update_one(
+                {"id": user_id},
+                {"$set": {"id": user_id, "expiry_time": user.get("expiry_time")}},
+                upsert=True
+            )
+
+    async def remove_expired_user(self, user_id):
+        result = await self.expired_users.delete_one({"id": int(user_id)})
+
+    async def get_expired_users(self):
+        expired_users = self.expired_users.find({})
+        return [user async for user in expired_users]
     
     async def is_user_exist(self, id):
         user = await self.col.find_one({'id':int(id)})
@@ -179,13 +196,12 @@ class Database:
         user_data = await self.get_user(user_id)
         if user_data:
             expiry_time = user_data.get("expiry_time")
-            if expiry_time is None:
-                # User previously used the free trial, but it has ended.
-                return False
-            elif isinstance(expiry_time, datetime.datetime) and datetime.datetime.now() <= expiry_time:
+            if expiry_time and datetime.datetime.now() <= expiry_time:
+                await self.remove_expired_user(user_id)
                 return True
             else:
-                await self.users.update_one({"id": user_id}, {"$set": {"expiry_time": None}})
+                await self.add_expired_user(user_id)
+                return False
         return False
     
     async def check_remaining_uasge(self, userid):
