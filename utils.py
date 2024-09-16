@@ -29,6 +29,7 @@ class temp(object):
     FILES = {}
     USERS_CANCEL = False
     GROUPS_CANCEL = False
+    EXPIRED_CANCEL = False
     BOT = None
 
 async def is_subscribed(bot, query, channel):
