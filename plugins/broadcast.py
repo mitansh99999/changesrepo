@@ -89,6 +89,7 @@ async def expired_users_broadcast(bot, message):
                     InlineKeyboardButton('CANCEL', callback_data=f'broadcast_cancel#expired')
                 ]]
                 await b_sts.edit(f"Expired users broadcast in progress...\n\nTotal Expired Users: <code>{total_expired_users}</code>\nCompleted: <code>{done} / {total_expired_users}</code>\nSuccess: <code>{success}</code>", reply_markup=InlineKeyboardMarkup(btn))
+        time_taken = get_readable_time(time.time() - start_time)
         await b_sts.edit(f"Expired users broadcast completed.\nCompleted in {time_taken}\n\nTotal Expired Users: <code>{total_expired_users}</code>\nCompleted: <code>{done} / {total_expired_users}</code>\nSuccess: <code>{success}</code>")
               
 @Client.on_message(filters.command(["grp_broadcast", "pin_grp_broadcast"]) & filters.user(ADMINS) & filters.reply)
