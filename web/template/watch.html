@@ -10,6 +10,9 @@
     <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
 
     <style>
+        .plyr--full-ui.plyr--video .plyr__control--overlaid{
+            background-color: transparent;
+        }
         marquee {
             font-size: 1.5rem;
             font-weight: 800;
@@ -101,7 +104,7 @@
     </header>
 
     <div class="container">
-        <video src="test.mp4" class="player" controls></video>
+        <video src="%s" class="player" controls></video>
     </div>
 
     <footer>
