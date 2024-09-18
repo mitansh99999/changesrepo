@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>%s</title>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/video.js/8.6.1/video-js.min.css" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/videojs-contrib-ads/7.3.2/videojs.ads.css" rel="stylesheet">
-  <link href="https://mitansh99999.github.io/js-and-css/videojsx.vast.css" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/fontawesome.min.css" integrity="sha512-B46MVOJpI6RBsdcU307elYeStF2JKT87SsHZfRSkjVi4/iZ3912zXi45X5/CBr/GbCyLx6M1GQtTKYRd52Jxgw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <style type="text/css">
-        /* Custom styles */
+    <meta charset="UTF-8">
+    <meta property="og:image" content="https://i.ibb.co/M8S0Zzj/live-streaming.png" itemprop="thumbnailUrl">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>%s</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway|Delius">
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
+
+    <style>
         marquee {
             font-size: 1.5rem;
             font-weight: 800;
@@ -21,6 +21,7 @@
         }
         header {
             background-color: #000000;
+            border-radius: 10px;
             padding: 10px;
             text-align: center;
             border-bottom: 2px solid #ccc;
@@ -51,105 +52,90 @@
             display: flex;
             align-items: center;
         }
-        .home-button i {
-            margin-right: 8px;
+        .home-button svg {
+            width: 20px; /* Adjust size as needed */
+            height: 20px; /* Adjust size as needed */
+            margin-right: 8px; /* Space between icon and text */
         }
         .home-button:hover {
             background-color: #333;
         }
-
-        .vjs-paused.vjs-has-started.video-js .vjs-big-play-button, .vjs-big-play-button,
-        .video-js.vjs-paused .vjs-big-play-button {
-            display: block;
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #f8f8f8;
+            border-top: 2px solid #ccc;
         }
-
-        .video-js:hover .vjs-big-play-button,
-        .video-js .vjs-big-play-button:focus,
-        .video-js .vjs-big-play-button:active {
-            background-color: transparent;
-            border-color: transparent;
+        footer h4 {
+            margin: 0;
+            color: #666;
+            display: inline; /* Changed to inline for horizontal layout */
         }
-
-        .video-js .vjs-control-bar {
-            background-color: rgba(0, 0, 0, 0) !important;
-            color: #ffffff;
-            font-size: 13px;
+        .social-icons {
+            display: inline; /* Changed to inline for horizontal layout */
+            margin-left: 10px; /* Space between text and icon */
         }
-        /* Responsive Design */
-        @media (max-width: 600px) {
-            header h1 {
-                font-size: 1.2rem;
-            }
-            header p {
-                font-size: 0.8rem;
-            }
-            .home-button {
-                top: 5px;
-                left: 5px;
-                padding: 5px 10px;
-                font-size: 12px;
-            }
-            marquee {
-                font-size: 1rem;
-            }
+        .social-icons svg {
+            width: 30px; /* Increased size for visibility */
+            height: 30px; /* Increased size for visibility */
+            fill: #0077ff; /* Color of the icon */
+            cursor: pointer;
         }
-
-        @media (max-width: 400px) {
-            header h1 {
-                font-size: 1rem;
-            }
-            header p {
-                font-size: 0.7rem;
-            }
-            marquee {
-                font-size: 0.8rem;
-            }
-        }
-  </style>
-  <head data-cast-api-enabled="true"> <!-- allow chromecast extention -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/video.js/8.6.1/video.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/videojs-contrib-ads/7.3.2/videojs.ads.min.js"></script>
-  <script src="https://mitansh99999.github.io/js-and-css/vast-client.min.js"></script>
-  <script src="https://mitansh99999.github.io/js-and-css/videojsx.vast.js"></script>
+    </style>
 </head>
+
 <body>
+    <header>
+        <a href="/" class="home-button">
+            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0,0,256,256">
+                <g fill="#ffffff" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><g transform="scale(5.33333,5.33333)"><path d="M39.5,43h-9c-1.381,0 -2.5,-1.119 -2.5,-2.5v-9c0,-1.105 -0.895,-2 -2,-2h-4c-1.105,0 -2,0.895 -2,2v9c0,1.381 -1.119,2.5 -2.5,2.5h-9c-1.381,0 -2.5,-1.119 -2.5,-2.5v-19.087c0,-2.299 1.054,-4.471 2.859,-5.893l14.212,-11.199c0.545,-0.428 1.313,-0.428 1.857,0l14.214,11.199c1.805,1.422 2.858,3.593 2.858,5.891v19.089c0,1.381 -1.119,2.5 -2.5,2.5z"></path></g></g>
+            </svg>
+        </a>
+        <h1>Welcome ! !</h1>
+        <p>Your favorite movies and shows, streamed live</p>
+        <marquee bgcolor="#f7f305">
+            <div id="file-name">
+                %s
+            </div>
+        </marquee>
+    </header>
 
-  <header>
-    <a href="/" class="home-button"><i class="fas fa-home"></i></a>
-    <h1>Welcome ! !</h1>
-    <p>Your favorite movies and shows, streamed live</p>
-    <marquee bgcolor="#f7f305">
-        <div class="toogle"></div>
-        <div id="file-name">
-            %s
-        </div>
-    </marquee>
-</header>
+    <div class="container">
+        <video src="test.mp4" class="player" controls></video>
+    </div>
 
-  <div class="container">
-    <video id="player" controls class="video-js vjs-default-skin" data-setup='{"playbackRates": [1, 1.5, 2], "fluid": true}'>
-      <source src="%s" type='video/mp4'>
-      <p>Video Playback Not Supported</p>
-    </video>
-  </div>
-  <div id="companion"></div>
+    <footer>
+        <h4>Video not playing? Possibly because your browser or the player doesn't support the codec. Please download and watch.</h4>
+        <a href="https://t.me/yourchannel" target="_blank" class="social-icons">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
+                <path d="M25,2c12.703,0,23,10.297,23,23S37.703,48,25,48S2,37.703,2,25S12.297,2,25,2z M32.934,34.375	c0.423-1.298,2.405-14.234,2.65-16.783c0.074-0.772-0.17-1.285-0.648-1.514c-0.578-0.278-1.434-0.139-2.427,0.219	c-1.362,0.491-18.774,7.884-19.78,8.312c-0.954,0.405-1.856,0.847-1.856,1.487c0,0.45,0.267,0.703,1.003,0.966	c0.766,0.273,2.695,0.858,3.834,1.172c1.097,0.303,2.346,0.04,3.046-0.395c0.742-0.461,9.305-6.191,9.92-6.693	c0.614-0.502,1.104,0.141,0.602,0.644c-0.502,0.502-6.38,6.207-7.155,6.997c-0.941,0.959-0.273,1.953,0.358,2.351	c0.721,0.454,5.906,3.932,6.687,4.49c0.781,0.558,1.573,0.811,2.298,0.811C32.191,36.439,32.573,35.484,32.934,34.375z"></path>
+            </svg>
+        </a>
+    </footer>
 
-  <script>
-    var player = videojs('player');  
-    var companion = {
-      elementId: "companion",
-      maxWidth: 300,
-      maxHeight: 250
-    };
+    <script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
+    <script>
+        const controls = [
+            'play-large',
+            'rewind',
+            'play',
+            'fast-forward',
+            'progress',
+            'current-time',
+            'duration',
+            'mute',
+            'volume',
+            'captions',
+            'settings',
+            'pip',
+            'airplay',
+            'download',
+            'fullscreen'
+        ];
 
-    player.muted(false);
-    player.ads();
-    player.vast({
-      url: 'https://vast.yomeno.xyz/vast?spot_id=1409625', 
-      skip: 5, 
-      companion: companion, 
-      displayRemainingTime: true
-    });
-  </script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const player = Plyr.setup('.player', { controls });
+        });
+    </script>
 </body>
 </html>
