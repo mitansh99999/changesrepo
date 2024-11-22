@@ -356,7 +356,8 @@ async def save_template(client, message):
     grp_id = message.chat.id
     title = message.chat.title
     if not await is_check_admin(client, grp_id, message.from_user.id):
-        return await message.reply_text('You not admin in this group.')
+        gif_url = "https://imgur.com/a/Cz9cgi3"
+        return await message.reply_animation(animation=gif_url)
     try:
         template = message.text.split(" ", 1)[1]
     except:
