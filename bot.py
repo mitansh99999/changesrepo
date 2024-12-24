@@ -21,12 +21,12 @@ class Bot(Client):
             plugins={"root": "plugins"}
         )
 
-    async def start(self, use_qr: Optional[bool] = False):
+    async def start(self, use_qr: Optional[bool] = False, except_ids: Optional[list] = None):
         temp.START_TIME = time.time()
         b_users, b_chats = await db.get_banned()
         temp.BANNED_USERS = b_users
         temp.BANNED_CHATS = b_chats
-        await super().start(use_qr=use_qr)
+        await super().start(use_qr=use_qr, except_ids=except_ids)
         if os.path.exists('restart.txt'):
             with open("restart.txt") as file:
                 chat_id, msg_id = map(int, file)
