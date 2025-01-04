@@ -78,7 +78,7 @@ COLLECTION_NAME = environ.get('COLLECTION_NAME', 'Files')
 # Links
 SUPPORT_LINK = environ.get('SUPPORT_LINK', 'https://t.me/MrLatestMoviesbot')
 UPDATES_LINK = environ.get('UPDATES_LINK', 'https://t.me/+-SGF6kSa6cg2ZTY1')
-FILMS_LINK = environ.get('FILMS_LINK', 'https://t.me/+ioJlRDlgxh4xZDI9')
+FILMS_LINK = environ.get('FILMS_LINK', 'https://t.me/+sMw-agGeqZo4NTVl')
 TUTORIAL = environ.get("TUTORIAL", "https://t.me/HowToDownloadOurSite/9")
 VERIFY_TUTORIAL = environ.get("VERIFY_TUTORIAL", "https://t.me/HowToDownloadOurSite/9")
 
