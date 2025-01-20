@@ -90,6 +90,7 @@ I can't find the <b>{}</b> in my database! 🥲
     FILE_CAPTION = """<a href='https://t.me/Latest_Movies16_7'><b>ɴᴀᴍᴇ : {file_name}
 
 🚫 ᴘʟᴇᴀsᴇ ᴄʟɪᴄᴋ ᴏɴ ᴛʜᴇ ᴄʟᴏsᴇ ʙᴜᴛᴛᴏɴ ɪꜰ ʏᴏᴜ ʜᴀᴠᴇ sᴇᴇɴ ᴛʜᴇ ᴍᴏᴠɪᴇ 🚫</b></a><br>
+
 ⚠️The file will be automatically deleted after 1 hour, so please forward it to your saved messages to avoid inconvenience.⚠️"""
 
     WELCOME_TEXT = """👋 Hello {mention}, Welcome to {title} group! 💞"""
