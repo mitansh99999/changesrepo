@@ -25,7 +25,7 @@ class Media(Document):
         collection_name = COLLECTION_NAME
 
 async def save_file(media):
-    """Save file in database"""
+    "Save file in database"
 
     # TODO: Find better way to get same file_id for same media to avoid duplicates
     file_id = unpack_new_file_id(media.file_id)
